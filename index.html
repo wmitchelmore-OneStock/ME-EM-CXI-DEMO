@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ME+EM United Kingdom – CXI mock-up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --fg:#000000; --muted:#6b6b6b; --line:#e2e2e2; --soft:#f5f5f5;
+  --img-bg:#f2f2f2; --sale:#c8102e; --ok:#1d6b3f; --warn:#8a5a00;
+  --btn-bg:#000000; --btn-fg:#ffffff; --bar-bg:#000000; --bar-fg:#ffffff;
+  --focus:#2a6df4;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151515; --fg:#f4f4f4; --muted:#a3a3a3; --line:#333333; --soft:#1f1f1f;
+    --img-bg:#f2f2f2; --sale:#ff5a6e; --ok:#5fcf8f; --warn:#f0b54a;
+    --btn-bg:#f4f4f4; --btn-fg:#000000; --bar-bg:#000000; --bar-fg:#ffffff; --focus:#7aa7ff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151515; --fg:#f4f4f4; --muted:#a3a3a3; --line:#333333; --soft:#1f1f1f;
+  --img-bg:#f2f2f2; --sale:#ff5a6e; --ok:#5fcf8f; --warn:#f0b54a;
+  --btn-bg:#f4f4f4; --btn-fg:#000000; --bar-bg:#000000; --bar-fg:#ffffff; --focus:#7aa7ff;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+img{max-width:100%}
+.wrap{max-width:1440px;margin:0 auto;padding:0 24px}
+@media (max-width:640px){.wrap{padding:0 14px}}
+.cond{font-stretch:var(--head-stretch)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* top bar */
+.usp{background:var(--bar-bg);color:var(--bar-fg);font-size:12.5px}
+.usp .wrap{display:flex;justify-content:center;gap:40px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.usp span{display:inline-flex;align-items:center;gap:7px}
+@media (max-width:760px){.usp span:nth-child(n+2){display:none}}
+
+/* header */
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.hdr{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px}
+.hdr .left{display:flex;gap:22px;font-weight:600;font-size:14px}
+.hdr .left a{text-decoration:none}
+.hdr .left a.on{border-bottom:2px solid var(--fg);padding-bottom:2px}
+.logo{text-decoration:none;display:block;line-height:1;text-align:center}
+.logo b{display:block;font-weight:var(--logo-weight);font-stretch:var(--logo-stretch);font-size:var(--logo-size);letter-spacing:var(--logo-tracking);text-transform:var(--logo-case);white-space:nowrap}
+.logo b i{font-style:normal;font-weight:500;padding:0 1px}
+.hdr .right{display:flex;justify-content:flex-end;align-items:center;gap:4px}
+.icon-btn{background:none;border:0;padding:8px;cursor:pointer;display:inline-flex;align-items:center;position:relative;text-decoration:none}
+.icon-btn svg{width:22px;height:22px}
+.count{position:absolute;top:2px;right:0;min-width:17px;height:17px;border-radius:9px;background:var(--fg);color:var(--bg);font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.lang{display:inline-flex;border:1px solid var(--line);margin-right:8px}
+.lang button{border:0;background:none;padding:4px 8px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+nav.cats{border-top:1px solid var(--line)}
+nav.cats .wrap{display:flex;gap:26px;overflow-x:auto;height:46px;align-items:center;scrollbar-width:none}
+nav.cats a{text-decoration:none;text-transform:uppercase;font-weight:700;font-size:13px;letter-spacing:.3px;white-space:nowrap}
+nav.cats a.sale{color:var(--sale)}
+@media (max-width:760px){.hdr .left{display:none}.hdr{grid-template-columns:auto 1fr;gap:10px}.logo{text-align:left}.logo b{font-size:calc(var(--logo-size) * .74)}.lang{margin-right:2px}.icon-btn{padding:6px}}
+
+/* breadcrumbs & headings */
+.crumbs{font-size:12.5px;color:var(--muted);padding:18px 0 6px;display:flex;gap:6px;flex-wrap:wrap}
+.crumbs a{text-decoration:none}.crumbs a:hover{text-decoration:underline}
+h1.page{font-stretch:var(--head-stretch);font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.05;margin:6px 0 4px;letter-spacing:-.3px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 18px}
+
+/* toolbar */
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:24px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--bg);padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+select.chip{appearance:none;padding-right:28px;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+
+/* image panel + watermark */
+.ph{position:relative;background:var(--img-bg);aspect-ratio:3/4;overflow:hidden;display:block}
+.ph .art{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ph .art svg{width:78%;height:auto}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;opacity:0}
+.ph.has-photo img{opacity:1}
+.ph.has-photo .art{display:none}
+.ph::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='110'%3E%3Ctext x='85' y='60' text-anchor='middle' transform='rotate(-28 85 55)' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='19' letter-spacing='2' fill='rgba(0,0,0,0.16)' stroke='rgba(255,255,255,0.35)' stroke-width='0.8'%3EMOCK UP%3C/text%3E%3C/svg%3E");
+  background-repeat:repeat;background-size:170px 110px}
+.ph.sm::after{background-size:90px 58px}
+
+/* product grid */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 16px;margin-bottom:56px}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card a.ph{cursor:pointer}
+.meta-row{display:flex;justify-content:space-between;align-items:center;min-height:30px;margin-top:10px}
+.badges{display:flex;gap:6px}
+.badge{font-size:11.5px;font-weight:700;padding:2px 7px;border:1px solid currentColor}
+.badge.sale{color:var(--sale)}
+.heart{background:none;border:0;padding:4px;cursor:pointer;display:inline-flex}
+.heart svg{width:20px;height:20px}
+.heart[aria-pressed="true"] svg path{fill:currentColor}
+.brand{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.2px}
+.card .name{display:block;font-weight:600;text-decoration:none;font-size:14.5px;line-height:1.3;margin:2px 0 4px}
+.card .name:hover{text-decoration:underline}
+.price{font-weight:700;font-size:14.5px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.price .now.red{color:var(--sale)}
+.price s{color:var(--muted);font-weight:500;font-size:13px}
+.swatch{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);margin-top:4px}
+.swatch i{width:12px;height:12px;border-radius:50%;border:1px solid var(--line);display:inline-block}
+.dlv-mini{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);font-size:12.5px;display:grid;gap:4px}
+.dlv-mini div{display:flex;gap:7px;align-items:flex-start;line-height:1.35}
+.dlv-mini svg{width:15px;height:15px;flex:none;margin-top:1px}
+.ok{color:var(--ok)} .warn{color:var(--warn)}
+
+/* location */
+.loc{border:1px solid var(--line);padding:14px;background:var(--soft)}
+.loc label{display:block;font-weight:700;font-size:13.5px;margin-bottom:6px}
+.loc .row{display:flex;gap:8px}
+.loc input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);padding:10px 12px}
+.loc .err{color:var(--sale);font-size:12.5px;margin-top:6px}
+.loc .set{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px}
+.loc .set b{font-weight:700}
+.linkbtn{background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;font-size:13px;font-weight:600}
+.btn{background:var(--btn-bg);color:var(--btn-fg);border:1px solid var(--btn-bg);padding:12px 18px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.4px;font-size:13.5px;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;gap:8px}
+.btn.ghost{background:var(--bg);color:var(--fg);border-color:var(--fg)}
+.btn.block{width:100%;padding:16px}
+.btn.sm{padding:10px 14px;font-size:12.5px}
+
+/* delivery options */
+.opts{display:grid;gap:0;border:1px solid var(--line);margin-top:12px}
+.opt{display:grid;grid-template-columns:22px 1fr auto;gap:10px;padding:12px 14px;border-top:1px solid var(--line);align-items:start}
+.opt:first-child{border-top:0}
+.opt svg{width:20px;height:20px;margin-top:1px}
+.opt .t{font-weight:700;font-size:14px}
+.opt .d{font-size:13px;color:var(--muted)}
+.opt .d.exact{color:var(--fg)}
+.opt .d.exact b{color:var(--ok)}
+.opt .p{font-weight:700;font-size:13.5px;white-space:nowrap}
+.opt.na{opacity:.55}
+label.opt{cursor:pointer}
+label.opt input{position:absolute;opacity:0;pointer-events:none}
+label.opt .radio{width:18px;height:18px;border:2px solid var(--fg);border-radius:50%;margin-top:2px;display:inline-flex;align-items:center;justify-content:center}
+label.opt input:checked + .radio::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--fg)}
+label.opt:has(input:checked){background:var(--soft)}
+label.opt:has(input:focus-visible){outline:2px solid var(--focus);outline-offset:-2px}
+.choose{grid-template-columns:22px 22px 1fr auto}
+
+/* PDP */
+.pdp{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;margin:8px 0 64px;align-items:start}
+@media (max-width:900px){.pdp{grid-template-columns:minmax(0,1fr);gap:20px}}
+.pdp .ph{aspect-ratio:4/5}
+.pdp .ph .art svg{width:62%}
+.pdp h1{font-stretch:var(--head-stretch);font-weight:800;font-size:clamp(26px,3vw,36px);line-height:1.08;margin:4px 0 10px}
+.pdp .price{font-size:20px;margin-bottom:6px}
+.pdp .price s{font-size:16px}
+.section{margin-top:22px}
+.section h2{font-size:14px;font-weight:700;margin:0 0 10px}
+.sizes{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:8px}
+.size{border:1px solid var(--line);background:var(--bg);padding:11px 0;font-weight:600;cursor:pointer;font-size:14px}
+.size:hover{border-color:var(--fg)}
+.size[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.size:disabled{color:var(--muted);text-decoration:line-through;cursor:not-allowed;background:var(--soft)}
+.size.oos{color:var(--muted);text-decoration:line-through;background:var(--soft)}
+.size.soon{position:relative;background:var(--soft)}
+.size.soon::after{content:"";position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.size.oos[aria-pressed="true"],.size.soon[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.legend{font-size:12.5px;color:var(--muted);margin-top:10px;display:flex;gap:18px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);display:inline-block}
+.rescue{border:1px solid var(--line);border-left:3px solid var(--warn);padding:16px}
+.rescue.soon,.rescue.done{border-left-color:var(--ok)}
+.rescue h3{margin:0 0 4px;font-size:15px}
+.rescue p{margin:0 0 12px;font-size:14px;color:var(--muted);max-width:60ch}
+.rescue .row{display:flex;gap:8px;flex-wrap:wrap}
+.rescue input{flex:1;min-width:180px;border:1px solid var(--line);background:var(--bg);padding:10px 12px}
+.rescue input[aria-invalid="true"]{border-color:var(--sale)}
+.alt{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px;font-size:13px}
+.alt button{border:1px solid var(--line);background:var(--bg);padding:5px 12px;font-weight:600;cursor:pointer}
+.alt button:hover{border-color:var(--fg)}
+.pretag{display:inline-block;font-size:12px;font-weight:700;color:var(--ok);margin-top:4px}
+.formerr{color:var(--sale);font-size:13px;margin-top:8px;font-weight:600}
+.stores{display:grid;gap:0;border:1px solid var(--line);margin-top:10px;font-size:13.5px}
+.stores div{padding:10px 14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+.stores div:first-child{border-top:0}
+.stores small{color:var(--muted);display:block;font-size:12px}
+details.acc{border-top:1px solid var(--line);padding:14px 0}
+details.acc:last-of-type{border-bottom:1px solid var(--line)}
+details.acc summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+details.acc summary::after{content:"+";font-weight:400;font-size:20px;line-height:1}
+details.acc[open] summary::after{content:"–"}
+details.acc p{margin:10px 0 8px;max-width:62ch}
+dl.attrs{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;margin:8px 0 0;font-size:14px}
+dl.attrs dt{color:var(--muted)} dl.attrs dd{margin:0}
+
+/* basket + checkout */
+.two{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:40px;margin:8px 0 64px;align-items:start}
+@media (max-width:960px){.two{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.loc .row{flex-wrap:wrap}.loc .row .btn{width:100%}.line{grid-template-columns:84px 1fr auto;gap:12px}}
+.line{display:grid;grid-template-columns:110px 1fr auto;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.line:first-child{border-top:1px solid var(--line)}
+.line .ph{aspect-ratio:3/4}
+.line .ttl{font-weight:700;text-decoration:none}
+.line .ttl:hover{text-decoration:underline}
+.line .info{font-size:13.5px;color:var(--muted)}
+.qty{display:inline-flex;border:1px solid var(--line);margin-top:10px;align-items:center}
+.qty button{background:none;border:0;width:34px;height:34px;cursor:pointer;font-size:16px}
+.qty span{min-width:28px;text-align:center;font-weight:700}
+.panel{border:1px solid var(--line);padding:20px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 130px)}
+@media (max-width:960px){.panel{position:static}}
+.panel h2{font-stretch:var(--head-stretch);font-weight:800;font-size:22px;margin:0 0 14px}
+.tot{display:grid;gap:8px;font-size:14px;margin-top:16px}
+.tot div{display:flex;justify-content:space-between;gap:10px}
+.tot .grand{font-weight:800;font-size:17px;border-top:1px solid var(--line);padding-top:12px;margin-top:4px}
+.freebar{height:4px;background:var(--line);margin:8px 0 4px}
+.freebar i{display:block;height:100%;background:var(--fg)}
+.empty{padding:56px 0 80px;text-align:center}
+.empty h1{margin-bottom:10px}
+.empty p{color:var(--muted);margin:0 0 22px}
+
+.steps{display:flex;gap:0;margin:6px 0 24px;font-size:13px;font-weight:700;border-bottom:1px solid var(--line)}
+.steps span{padding:10px 18px 10px 0;color:var(--muted)}
+.steps span.on{color:var(--fg)}
+fieldset{border:0;padding:0;margin:0 0 30px}
+legend{font-stretch:var(--head-stretch);font-weight:800;font-size:22px;margin-bottom:12px;padding:0}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fields .full{grid-column:1/-1}
+@media (max-width:560px){.fields{grid-template-columns:1fr}}
+.f label{display:block;font-size:12.5px;font-weight:700;margin-bottom:4px}
+.f input{width:100%;border:1px solid var(--line);background:var(--bg);padding:11px 12px}
+.f input[aria-invalid="true"]{border-color:var(--sale)}
+.f .msg{color:var(--sale);font-size:12px;margin-top:3px}
+.hint{font-size:13px;color:var(--muted);margin:8px 0 0}
+.mini-line{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.mini-line .ph{aspect-ratio:3/4}
+.promise{background:var(--soft);border-left:3px solid var(--ok);padding:12px 14px;font-size:14px;margin-top:14px}
+.promise b{display:block;font-size:15px}
+
+.confirm{max-width:760px;margin:24px auto 72px}
+.confirm .tick{width:52px;height:52px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.confirm .tick svg{width:26px;height:26px}
+.confirm .box{border:1px solid var(--line);padding:20px;margin-top:20px}
+.confirm .big{font-stretch:var(--head-stretch);font-weight:800;font-size:clamp(22px,3vw,30px);line-height:1.15;margin:4px 0 0}
+
+footer.site{background:#000;color:#fff;margin-top:20px;padding:40px 0 28px;font-size:13px}
+footer.site .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+@media (max-width:760px){footer.site .cols{grid-template-columns:1fr 1fr}}
+footer.site h3{font-size:13px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.4px}
+footer.site p{margin:0 0 6px;color:#bdbdbd}
+footer.site .fine{border-top:1px solid #333;margin-top:28px;padding-top:16px;color:#9a9a9a;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* ---- v2 additions ---- */
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip svg{width:15px;height:15px}
+.noresults{padding:40px 0 80px;color:var(--muted)}
+.opt .store-line{color:var(--muted)}
+.rescue.store{border-left-color:var(--ok)}
+.rescue ul{list-style:none;margin:0 0 14px;padding:0;font-size:13.5px;border-top:1px solid var(--line)}
+.rescue li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.rescue li small{display:block;color:var(--muted);font-size:12px}
+.aisle{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;margin-top:12px;padding:12px 14px;background:var(--soft)}
+.aisle svg{width:18px;height:18px;flex:none;margin-top:1px}
+.stores .rbtn{border:1px solid var(--fg);background:var(--bg);font-weight:700;font-size:12px;padding:5px 10px;cursor:pointer;margin-top:4px;text-transform:uppercase;letter-spacing:.3px}
+.stores .rbtn:hover{background:var(--fg);color:var(--bg)}
+.reserved{color:var(--ok);font-weight:700;font-size:12px;margin-top:4px;display:block}
+.datechips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px}
+.datechip{position:relative;cursor:pointer}
+.datechip input{position:absolute;opacity:0;pointer-events:none}
+.datechip span{display:block;border:1px solid var(--line);padding:8px 12px;font-size:13px;font-weight:600;text-align:center;min-width:92px;background:var(--bg)}
+.datechip small{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.datechip input:checked + span{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.datechip input:checked + span small{color:inherit}
+.datechip input:focus-visible + span{outline:2px solid var(--focus);outline-offset:2px}
+.edit-line{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.edit-line .ph{aspect-ratio:3/4}
+.edit-line select,.ret-line select{border:1px solid var(--line);background:var(--bg);padding:7px 10px}
+.row-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.ret-line{display:grid;grid-template-columns:84px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.ret-line .ph{aspect-ratio:3/4}
+.seg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.seg label{cursor:pointer;position:relative}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:inline-block;border:1px solid var(--line);padding:7px 12px;font-size:13px;font-weight:600}
+.seg input:checked + span{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.seg input:focus-visible + span{outline:2px solid var(--focus);outline-offset:2px}
+.qr{width:150px;height:150px;background:#fff;padding:8px;border:1px solid var(--line)}
+.ret-done{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
+@media (max-width:600px){.ret-done{grid-template-columns:1fr}}
+footer.site a{color:#bdbdbd;text-decoration:none}
+footer.site a:hover{color:#fff;text-decoration:underline}
+
+/* modal + toast */
+.modal-bg{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:var(--bg);color:var(--fg);width:min(520px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:24px;position:relative}
+.modal h2{font-stretch:var(--head-stretch);font-weight:800;font-size:24px;margin:0 0 8px;line-height:1.1}
+.modal p{margin:0 0 14px;color:var(--muted)}
+.modal .x{position:absolute;top:10px;right:10px;background:none;border:0;font-size:22px;cursor:pointer;padding:6px 10px}
+.modal .f{margin-bottom:12px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:90;background:var(--fg);color:var(--bg);padding:10px 16px;font-weight:600;font-size:14px}
+
+/* ---- guided demo layer (OneStock styling, kept visually separate from the shop) ---- */
+.os{--os-navy:#0e1530;--os-navy2:#18214a;--os-teal:#3ee6c4;--os-ink:#ffffff;--os-dim:#b9c0dc}
+#tour-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:55;background:#0e1530;color:#fff;border:2px solid #3ee6c4;padding:11px 16px;font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+#tour-fab[hidden],#tour-ring[hidden],#tour-pop[hidden],.toast[hidden]{display:none!important}
+#tour-fab i{width:9px;height:9px;border-radius:50%;background:#3ee6c4;display:inline-block}
+#tour-ring{position:fixed;z-index:60;pointer-events:none;border:2px solid #3ee6c4;border-radius:4px;box-shadow:0 0 0 9999px rgba(8,12,30,.48);transition:top .25s ease,left .25s ease,width .25s ease,height .25s ease}
+#tour-pop{position:fixed;z-index:61;width:min(380px,calc(100vw - 24px));background:#0e1530;color:#fff;box-shadow:0 18px 50px rgba(0,0,0,.35);font-size:14px;line-height:1.45}
+#tour-pop .tp-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #263160;font-size:12.5px;color:#b9c0dc}
+#tour-pop .tp-head b{color:#3ee6c4;font-weight:700}
+#tour-pop .tp-x{background:none;border:0;color:#fff;font-size:20px;cursor:pointer;line-height:1;padding:2px 6px}
+#tour-pop .tp-body{padding:14px 16px 4px}
+#tour-pop h3{margin:0 0 10px;font-size:18px;font-weight:800;font-stretch:80%;line-height:1.15}
+#tour-pop .tp-today{border-left:3px solid #ff9f43;padding:2px 0 2px 10px;margin-bottom:10px}
+#tour-pop .tp-now{border-left:3px solid #3ee6c4;padding:2px 0 2px 10px;margin-bottom:10px}
+#tour-pop .tp-today b,#tour-pop .tp-now b{display:block;font-size:11.5px;letter-spacing:.3px;color:#b9c0dc;font-weight:700;margin-bottom:2px}
+#tour-pop p{margin:0}
+#tour-pop .tp-try{background:#18214a;padding:8px 10px;margin:4px 0 10px;font-size:13px}
+#tour-pop .tp-nav{display:flex;justify-content:space-between;gap:8px;padding:10px 16px 14px;flex-wrap:wrap}
+#tour-pop button.tb{background:none;border:1px solid #3a4680;color:#fff;padding:8px 14px;font-weight:700;cursor:pointer;font-size:13px}
+#tour-pop button.tb.primary{background:#3ee6c4;border-color:#3ee6c4;color:#0e1530}
+#tour-pop .dots{display:flex;gap:5px;align-items:center}
+#tour-pop .dots i{width:7px;height:7px;border-radius:50%;background:#3a4680;display:block}
+#tour-pop .dots i.on{background:#3ee6c4}
+@media (max-width:700px){#tour-pop{left:0!important;right:0;bottom:0;top:auto!important;width:100%!important;max-height:52vh;overflow:auto;padding-bottom:env(safe-area-inset-bottom,0px)}}
+.os-menu{background:#0e1530;color:#fff;width:min(620px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:26px;position:relative}
+.os-menu .x{color:#fff}
+.os-menu h2{font-stretch:80%;font-weight:800;font-size:26px;margin:0 0 6px;line-height:1.1}
+.os-menu .lead{color:#b9c0dc;margin:0 0 18px}
+.os-score{display:flex;gap:22px;align-items:baseline;margin:6px 0 18px;flex-wrap:wrap}
+.os-score b{font-size:40px;font-weight:800;color:#3ee6c4;font-stretch:80%;line-height:1}
+.os-score span{color:#b9c0dc;font-size:13px}
+.os-paths{display:grid;gap:8px}
+.os-paths button{display:grid;grid-template-columns:1fr auto;gap:4px 12px;text-align:left;background:#18214a;border:1px solid #263160;color:#fff;padding:12px 14px;cursor:pointer;font:inherit}
+.os-paths button:hover,.os-paths button:focus-visible{border-color:#3ee6c4}
+.os-paths b{font-size:15px}
+.os-paths small{color:#b9c0dc;grid-column:1}
+.os-paths em{font-style:normal;color:#3ee6c4;font-weight:700;grid-row:1/3;grid-column:2;align-self:center;font-size:13px;text-align:right}
+.os-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:12px;flex-wrap:wrap;color:#b9c0dc;font-size:12px}
+.os-foot button{background:none;border:1px solid #3a4680;color:#fff;padding:9px 14px;font-weight:700;cursor:pointer}
+@media (prefers-reduced-motion: reduce){#tour-ring{transition:none}}
+</style>
+<style>:root{--bg:#ffffff;--fg:#1a1a1a;--sale:#9b1c1c;--btn-bg:#111111;--btn-fg:#ffffff;--bar-bg:#111111;--bar-fg:#ffffff;--img-bg:#f3f1ee;--font:"Jost",Helvetica Neue,Arial,sans-serif;--head-stretch:100%;--logo-weight:500;--logo-stretch:100%;--logo-size:26px;--logo-tracking:3px;--logo-case:uppercase}</style>
+</head>
+<body>
+<div class="usp" id="usp"></div>
+<header class="site" id="hdr"></header>
+<main id="app" tabindex="-1"></main>
+<footer class="site" id="ftr"></footer>
+<div id="modal"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+<button id="tour-fab" type="button" aria-label="Open the guided demo"></button>
+<div id="tour-ring" hidden></div>
+<div id="tour-pop" role="dialog" aria-live="polite" aria-label="Guided demo" hidden></div>
+<script>
+
+/* ================= data (injected by build_mockup.py) ================= */
+const D = {"lang": "en", "langs": ["en"], "i18n": {"en": {"usp1": "Free delivery to your door over {0}", "usp2": "Click & Collect ready in 1 hour", "usp3": "Return in any store", "men": "Women", "junior": "", "nav": ["New In", "Clothing", "Dresses", "Gifting", "Shoes", "Accessories", "Sale"], "home": "Home", "newin": "New in", "plpTitle": "Clothing", "products": "{0} products", "sort": "Sort", "sortRec": "Recommended", "sortLow": "Price: low to high", "sortHigh": "Price: high to low", "fSize": "Size", "fColour": "Colour", "fPrice": "Price", "deliverTo": "Delivering to", "setLoc": "Enter postcode", "fSame": "Delivered today", "fStore": "In stock at {0}", "fStoreGeneric": "In stock near you", "filterNeedsLoc": "Enter your postcode to use this filter.", "noResults": "No products match your filters.", "clearFilters": "Clear filters", "sale": "-{0}%", "wish": "Save to favourites", "colour": "Colour", "cardStd": "Delivery in {0}–{1} working days", "cardStore": "Free pick up in store", "cardFrom": "Delivered to you {0}", "cardSame": "Delivered {0}, {1}", "cardStoreNow": "In stock at {0}, ready today", "cardStoreFrom": "Collect at {0} {1}", "cardStoreTomorrow": "In stock at {0}", "size": "Choose size", "sizeGuide": "Size guide", "chooseSize": "Choose a size to continue.", "add": "Add to basket", "outOfStock": "Sold out", "desc": "Description", "details": "Details", "artno": "Item no.", "delivery": "Delivery and pick up", "locLabel": "Where should we deliver?", "locPh": "Postcode or city, e.g. {0} or {1}", "locBtn": "Show dates", "change": "Change", "locErr": "We couldn’t find that place. Try a postcode, e.g. {0}.", "std": "Standard delivery", "fast": "Fast delivery (assumed price)", "next": "Next-day delivery", "same": "Same-day from store (assumed price)", "nominated": "Choose your day (assumed price)", "pickup": "Pick up in store", "stdG": "{0}–{1} working days", "fastG": "{0}–{1} working days", "nextG": "Order by {0} on working days", "sameG": "In larger cities, order by {0}", "nominatedG": "Choose your day at checkout, including Saturday", "pickupG": "Free, ready in 1 hour when in stock", "nextNA": "Not available to your area", "sameNA": "No nearby store has this item", "free": "Free", "freeOver": "Free over {0}", "exact": "Delivered <b>{0}<\/b>", "ready": "Ready <b>{0} from {1}<\/b>", "orderWithin": "order within {0} h {1} min", "sameExact": "Delivered <b>{0}, {1}<\/b>", "fromStore": "from {0}", "nomFrom": "Choose a day from <b>{0}<\/b>{1}", "nomPick": "Choose a day", "satNote": "from store", "storeStock": "Store stock", "storeHint": "Choose a size to see stock in your nearest stores.", "storeIn": "In stock", "storeOut": "Not in stock, can be sent to store", "km": "{0} km", "storeEnter": "Enter a postcode to see stock in stores near you.", "aisle": "In store and your size is missing? Staff can order it from our whole network and send it to your home.", "reserve": "Reserve", "reservedTag": "Reserved for you", "reserveH": "Reserve and pay in store", "reserveP": "We’ll put size {1} aside at {0}. You pay when you collect.", "reserveName": "Name", "reserveContact": "Mobile or email", "reserveBtn": "Reserve item", "reserveDoneH": "Item reserved", "reserveDone": "Ready at {0} {1} from {2}. We’ll hold it until {3} at {4}, and you pay in store.", "close": "Close", "basket": "Basket", "basketTitle": "Your basket", "empty": "Your basket is empty", "emptyTxt": "Find something you like and add it to your basket.", "shop": "Shop new in", "remove": "Remove", "qty": "Quantity", "sizeL": "Size", "summary": "Order summary", "subtotal": "Subtotal", "shipping": "Delivery to your door", "total": "Total", "vat": "Incl. VAT", "toFree": "Spend {0} more for free delivery to your door", "gotFree": "You’ve got free delivery to your door", "toCheckout": "Go to checkout", "continue": "Continue shopping", "checkout": "Checkout", "stepBasket": "Basket", "stepDelivery": "Delivery", "stepPay": "Payment", "whereDeliver": "Where should we deliver?", "whereHint": "We show every option and date before you fill in your details.", "contactAddr": "Contact and address", "email": "Email", "phone": "Mobile number", "phoneHint": "Any country code works, e.g. +1 or +49.", "fname": "First name", "lname": "Last name", "street": "Street and number", "pc": "Postcode", "city": "City", "method": "Delivery method", "methodHint": "Enter your postcode to see the exact delivery date.", "pickStore": "Choose a store", "payment": "Payment", "card": "Card", "payNote": "Mock-up: no money is taken.", "place": "Place order", "req": "Required", "badEmail": "Enter a valid email", "badPc": "Enter a valid postcode", "badPhone": "Enter a valid phone number", "unavailable": "Choose another delivery method", "yourDate": "Your delivery date", "yourPickup": "Ready for pick up", "thanks": "Thank you for your order", "orderNo": "Order number", "confirmMail": "We’ve sent a confirmation to {0}.", "deliverTo2": "Delivering to", "pickupAt": "Picking up at", "items": "Items", "backShop": "Continue shopping", "editH": "Change or cancel until {0}", "editP": "Your order hasn’t been released to the warehouse yet, so you can still change a size or cancel.", "editClosed": "Your order has been released to the warehouse and can no longer be changed.", "changeSize": "Change size", "cancel": "Cancel order", "cancelH": "Cancel this order?", "cancelP": "You’ll be refunded straight away. This can’t be undone.", "cancelYes": "Yes, cancel", "cancelNo": "Keep order", "cancelledH": "Order cancelled", "cancelledP": "Order {0} is cancelled and the amount has been returned to your payment method.", "sizeChanged": "Size changed to {0}", "returnLink": "Return or exchange", "retTitle": "Return or exchange", "retSub": "{0}-day returns. Drop off in a store or with the carrier.", "orderNoL": "Order number", "findOrder": "Find order", "demoOrder": "Use a demo order", "notFound": "We couldn’t find an order with that number and email.", "keep": "Keep", "ret": "Return", "exch": "Exchange size", "newSize": "New size", "howReturn": "How would you like to return?", "inStore": "Drop off in store", "inStoreP": "Free. Instant refund, and swap on the spot if the size is in stock.", "carrier": "Drop off with {0}", "carrierP": "{0} is deducted from your refund. Refunded within {1} working days.", "chooseItem": "Choose at least one item to return or exchange.", "submitRet": "Create return", "retDoneH": "Your return is ready", "retNo": "Return number", "showQRstore": "Show this QR code at {0}.", "showQRcarrier": "Show this QR code at {0}.", "outReturn": "Returned", "outExchNow": "Exchanged for size {0}, ready for you at {1}", "outExchShip": "Exchanged for size {0}. Sent once the return is scanned, delivered {1}", "refundNow": "{0} refunded on the spot in store.", "refund14": "{0} refunded within {1} working days.", "noRefund": "No refund, exchange only.", "footer": ["Customer service", "About {0}", "Stores", "Follow us"], "f1": ["Contact us", "Delivery", "Return or exchange", "FAQ"], "f2": ["About us", "Careers", "Sustainability", "Press"], "f3": ["Find a store", "Click & Collect", "Gift cards"], "f4": ["Instagram", "Pinterest", "Newsletter"], "fine": "Mock-up for demonstration purposes. Not a real shop.", "soonTitle": "Sold out, more on the way", "lgOut": "Sold out", "lgSoon": "More on the way, can be pre-ordered", "lgStore": "Store stock only", "soonH": "Size {0} is back in stock {1}", "soonP": "It’s sold out right now, but a new delivery is on its way to our warehouse. Pre-order today and we’ll send it as soon as it lands.", "preorderDate": "Pre-order, delivered {0}", "preorder": "Pre-order", "storeH": "Sold out online, but in stock in {0} stores", "storeP": "We’ll send it straight from the store, or you can collect it.", "addFromStore": "Add to basket, ships from store", "fromStoreTag": "Ships from store", "notifyH": "Size {0} is sold out", "notifyP": "No store has it and nothing is on the way. Enter your email and we’ll let you know if it comes back.", "notifyLabel": "Email for restock alert", "notifyBtn": "Notify me", "notifyPh": "Your email", "notifyDoneH": "We’ll let you know", "notifyDone": "We’ll email {1} if size {0} comes back in stock.", "notifyUndo": "Undo", "altSizes": "In stock now:", "noDate": "Delivery dates will show once this size is back in stock.", "fromDate": "from {0}", "preTag": "Pre-order, back in stock {0}", "preShort": "Pre-order", "shipTogether": "Your order ships in one parcel once every item is in stock. The dates already allow for this.", "guide": "Demo guide", "carrierPfree": "Free. Refunded within {0} working days.", "locUnsupported": "We can’t deliver there from this store.", "todayP": "today, ", "tomorrowP": "tomorrow, ", "langLabel": "EN", "locale": "en-GB", "satSuffix": ", including Saturday"}}, "market": {"name": {"en": "United Kingdom", "local": "United Kingdom"}, "currency": "GBP", "tz": "Europe/London", "langs": ["en"], "localeByLang": {"en": "en-GB"}, "postcode": {"mode": "alpha", "full": "^[A-Z]{1,2}\\d[A-Z\\d]? ?\\d[A-Z]{2}$", "partial": "^[A-Z]{1,2}\\d[A-Z\\d]?$", "maxlength": 8, "inputmode": "text", "area": "^[A-Z]{1,2}"}, "zones": {"main": {"std": 3, "fast": 2, "next": true}, "ni": {"std": 4, "fast": 3, "next": false}, "remote": {"std": 5, "fast": 3, "next": false}}, "zoneRules": [["BT", "ni"], ["IV", "remote"], ["KW", "remote"], ["ZE", "remote"], ["HS", "remote"], ["PA", "remote"]], "defaultZone": "main", "unsupported": ["GY", "JE", "IM"], "places": [["EC", "London", 51.515, -0.098, ["london"]], ["WC", "London", 51.517, -0.12, []], ["W", "London", 51.51, -0.2, []], ["SW", "London", 51.46, -0.16, []], ["SE", "London", 51.47, -0.06, []], ["N", "London", 51.56, -0.11, []], ["NW", "London", 51.55, -0.19, []], ["E", "London", 51.53, -0.03, []], ["M", "Manchester", 53.48, -2.242, []], ["B", "Birmingham", 52.486, -1.89, []], ["L", "Liverpool", 53.408, -2.991, []], ["LS", "Leeds", 53.8, -1.549, []], ["S", "Sheffield", 53.381, -1.47, []], ["NE", "Newcastle", 54.978, -1.617, ["newcastle upon tyne"]], ["G", "Glasgow", 55.864, -4.252, []], ["EH", "Edinburgh", 55.953, -3.188, []], ["CF", "Cardiff", 51.481, -3.179, []], ["BS", "Bristol", 51.454, -2.587, []], ["NG", "Nottingham", 52.954, -1.158, []], ["LE", "Leicester", 52.637, -1.135, []], ["CB", "Cambridge", 52.205, 0.122, []], ["OX", "Oxford", 51.752, -1.258, []], ["BT", "Belfast", 54.597, -5.93, []], ["AB", "Aberdeen", 57.15, -2.094, []], ["IV", "Inverness", 57.478, -4.224, []], ["ZE", "Lerwick", 60.155, -1.145, ["shetland"]], ["PL", "Plymouth", 50.375, -4.143, []], ["SO", "Southampton", 50.909, -1.404, []], ["BN", "Brighton", 50.822, -0.137, []], ["NR", "Norwich", 52.63, 1.297, []]], "storeHours": {"wd": [9, 20], "sat": [9, 18], "sun": [11, 17]}, "carriers": ["Royal Mail", "Evri"], "payments": ["Apple Pay", "Klarna", "PayPal"], "fees": {"std": 3.99, "fast": 5.99, "next": 6.99, "same": 9.99, "nominated": 5.99, "freeOver": 50, "returnFee": 0, "cutoffHour": 17, "sameCutoffHour": 14, "refundDays": 14, "returnDays": 28}, "demo": {"street": "100 Oxford Street", "pc": "W1D 1LL", "city": "London", "phone": "+44 7700 900123", "examplePc": "M1 1AE", "exampleCity": "Manchester", "farPc": "ZE1 0AA", "fname": "Demo", "lname": "Customer"}, "code": "GB", "centroid": [53.0687, -1.5714]}, "fees": {"std": 4.95, "fast": 9.95, "next": 9.95, "same": 14.95, "nominated": 9.95, "freeOver": 250, "returnFee": 0, "cutoffHour": 16, "sameCutoffHour": 14, "refundDays": 7, "returnDays": 28}, "brand": {"name": "ME+EM", "slug": "meandem", "orderPrefix": "MEEM", "domain": "meandem.example", "storePrefix": "ME+EM ", "logoHTML": "ME<i>+<\/i>EM"}, "products": [{"slug": "sequin-midi-skirt", "pid": "SS27WS314000004", "name": "Sequin Midi Skirt", "brand": "ME+EM", "price": 195.0, "old": null, "color": "Black", "hex": "#151515", "shape": "dress", "cat": {"en": "Skirts"}, "img": "", "sizes": [["4", 1], ["6", 1], ["8", 1], ["10", 1], ["12", 1], ["14", 1], ["16", 1], ["18", 1]], "desc": {"en": {"intro": "A straight midi skirt in sequins.", "attrs": [["Colour", "Black"]]}}}, {"slug": "tailored-oversized-coat", "pid": "AW26CO111002531", "name": "Tailored Oversized Coat", "brand": "ME+EM", "price": 575.0, "old": null, "color": "Bronzed Brown", "hex": "#7a4f2e", "shape": "jacket", "cat": {"en": "Coats + Jackets"}, "img": "", "sizes": [["4P", 0, null, ["me-em-marylebone", "me-em-harrogate", "me-em-edinburgh"]], ["4R", 0, 6], ["6P", 0, 9], ["6R", 1], ["8P", 1], ["8R", 1], ["10P", 1], ["10R", 1], ["12P", 1], ["12R", 1], ["14P", 1], ["14R", 0, null], ["16P", 1], ["16R", 1]], "desc": {"en": {"intro": "An oversized tailored coat, in petite and regular lengths.", "attrs": [["Colour", "Bronzed Brown"]]}}}, {"slug": "fit-flare-midi-dress", "pid": "AW26JD113002556", "name": "Fit + Flare Midi Dress", "brand": "ME+EM", "price": 250.0, "old": null, "color": "Navy / Rich Olive", "hex": "#2b3550", "shape": "dress", "cat": {"en": "Dresses"}, "img": "", "sizes": [["4", 1], ["6", 1], ["8", 1], ["10", 1], ["12", 1], ["14", 1], ["16", 1], ["18", 1]], "desc": {"en": {"intro": "A graphic jacquard fit and flare midi dress.", "attrs": [["Colour", "Navy / Rich Olive"]]}}}, {"slug": "high-neck-relaxed-jumper", "pid": "AW26KN124002163", "name": "High Neck Relaxed Jumper", "brand": "ME+EM", "price": 225.0, "old": null, "color": "Mid Grey Melange", "hex": "#8c8c8c", "shape": "knit", "cat": {"en": "Knitwear + Cashmere"}, "img": "", "sizes": [["XXS", 1], ["XS", 1], ["S", 1], ["M", 1], ["L", 1], ["XL", 1]], "desc": {"en": {"intro": "A cashmere high neck jumper in a relaxed fit.", "attrs": [["Colour", "Mid Grey Melange"]]}}}], "stores": [{"id": "me-em-marylebone", "name": "ME+EM Marylebone", "addr": "4-5A Marylebone High Street, London W1U 4GD", "lat": 51.51, "lng": -0.2}, {"id": "me-em-westbourne-grove", "name": "ME+EM Westbourne Grove", "addr": "194 Westbourne Grove, London W11 2RH", "lat": 51.51, "lng": -0.2}, {"id": "me-em-kings-road", "name": "ME+EM Kings Road", "addr": "184 Kings Road, Chelsea, London SW3 5XS", "lat": 51.46, "lng": -0.16}, {"id": "me-em-harrods", "name": "ME+EM Harrods", "addr": "Harrods, Fourth Floor, 87-135 Brompton Road, London SW1X 7XL", "lat": 51.46, "lng": -0.16}, {"id": "me-em-harrogate", "name": "ME+EM Harrogate", "addr": "4 Prospect Crescent, Harrogate HG1 1RY", "lat": 53.993, "lng": -1.541}, {"id": "me-em-edinburgh", "name": "ME+EM Edinburgh", "addr": "43 George Street, Edinburgh EH2 2HT", "lat": 55.953, "lng": -3.188}], "stock": {"me-em-marylebone": {"sequin-midi-skirt": {"4": 2, "6": 3, "8": 1, "12": 2}, "tailored-oversized-coat": {"8P": 3, "8R": 2, "10P": 1, "10R": 2, "12P": 1, "14P": 1, "16P": 2, "16R": 3, "4P": 1}, "high-neck-relaxed-jumper": {"XXS": 1, "XS": 2, "M": 3, "L": 3}}, "me-em-westbourne-grove": {"high-neck-relaxed-jumper": {"XXS": 3, "XS": 1, "S": 3, "L": 3, "XL": 1}}, "me-em-kings-road": {"sequin-midi-skirt": {"4": 3, "6": 3, "8": 2, "10": 2, "12": 2, "14": 1, "16": 3, "18": 3}, "tailored-oversized-coat": {"10P": 1, "10R": 3, "12P": 2, "12R": 3, "16R": 1}}, "me-em-harrods": {"sequin-midi-skirt": {"10": 1, "12": 3, "14": 1, "16": 2, "18": 1}, "high-neck-relaxed-jumper": {"XXS": 3, "XS": 1, "M": 2, "L": 3}}, "me-em-harrogate": {"sequin-midi-skirt": {"4": 3, "6": 3, "8": 2, "10": 1, "12": 1, "14": 1, "16": 1, "18": 1}, "fit-flare-midi-dress": {"4": 3, "6": 3, "10": 2, "12": 3, "14": 1, "16": 2, "18": 3}, "high-neck-relaxed-jumper": {"XXS": 2, "XS": 1, "M": 1, "L": 1, "XL": 3}, "tailored-oversized-coat": {"4P": 1}}, "me-em-edinburgh": {"sequin-midi-skirt": {"4": 1, "6": 1, "8": 3, "14": 1, "16": 3, "18": 3}, "tailored-oversized-coat": {"6R": 3, "8P": 2, "14P": 3, "16P": 2, "16R": 3, "4P": 1}, "fit-flare-midi-dress": {"4": 3, "6": 1, "8": 3, "10": 2, "16": 3, "18": 1}, "high-neck-relaxed-jumper": {"S": 1, "M": 2, "L": 2, "XL": 1}}}, "holidays": ["2026-01-01", "2026-04-03", "2026-04-06", "2026-05-04", "2026-05-25", "2026-08-31", "2026-12-25", "2026-12-28", "2027-01-01", "2027-03-26", "2027-03-29", "2027-05-03", "2027-05-31", "2027-08-30", "2027-12-27", "2027-12-28", "2028-01-03", "2028-04-14", "2028-04-17", "2028-05-01", "2028-05-29", "2028-08-28", "2028-12-25", "2028-12-26"], "sameKm": 15, "sameWindow": "17–21", "cxi": {"retailer": "ME+EM", "date": "5 Nov 2026", "site": "meandem.com", "siteShort": "meandem.com", "score": "28.8%", "benchmark": "~76%"}, "tours": [{"id": "stores", "title": "Stores online", "score": "Click & Collect 0%, In-store options 0%", "steps": [{"id": "stores.filter", "route": "#products", "target": "[data-filter=\"store\"]", "actions": [{"loc": "W1D 1LL"}, {"filters": {"store": true}}], "title": "Filter by what’s in your local store", "today": "The Clothing listing filters by Size, Colour, Category and Sort By only. There’s no store or ‘available in store’ filter.", "now": "With a postcode set, shoppers narrow the range to what’s on the shelf at their nearest store. Fit + Flare Midi Dress drops out because Marylebone doesn’t carry it.", "tryit": ""}, {"id": "stores.stock", "route": "#product-sequin-midi-skirt", "target": "#storeStock", "actions": [{"locIfNone": "W1D 1LL"}, {"sel": ["sequin-midi-skirt", "12"]}], "title": "Store stock on the product page", "today": "No store stock check on product pages or the Stores page, despite 11 UK stores including the Selfridges and Harrods concessions.", "now": "Live stock for the chosen size in the three nearest stores, each with a ready time. The same stock picture drives the delivery dates above.", "tryit": ""}, {"id": "stores.reserve", "route": "#product-sequin-midi-skirt", "target": "#storeStock .stores", "actions": [{"locIfNone": "W1D 1LL"}, {"sel": ["sequin-midi-skirt", "12"]}], "title": "Reserve & Collect", "today": "No way to reserve online for store pickup on the product page, basket, Stores page, FAQ or Shipping page.", "now": "Reserve now and pay in store. The item is held until closing time on the next opening day.", "tryit": "Click Reserve on a store with stock to see the confirmation."}, {"id": "stores.cc", "route": "#checkout", "target": "#methods", "actions": [{"locIfNone": "W1D 1LL"}, {"basket": [{"slug": "sequin-midi-skirt", "size": "12", "qty": 1}]}, {"method": "pickup"}], "title": "Click & Collect, ready in 1 hour", "today": "Checkout offers home delivery only (Standard £4.95, Next Working Day £9.95). No Click & Collect in checkout, FAQ or Shipping page.", "now": "Free Click & Collect from the nearest store with stock, ready in an hour. If no nearby store has it, we transfer it and show the exact day it’s ready.", "tryit": ""}]}, {"id": "faster", "title": "Faster delivery from stores", "score": "Home delivery 39%", "steps": [{"id": "faster.filter", "route": "#products", "target": "[data-filter=\"same\"]", "actions": [{"loc": "W1D 1LL"}, {"filters": {"same": true}}], "title": "Same-day delivery, from stores", "today": "The listing has no ‘arrives by’ or delivery-date filter, and there is no same-day option to filter for.", "now": "Products a nearby store can ship today are flagged on every card, and shoppers can filter for them.", "tryit": ""}, {"id": "faster.same", "route": "#product-sequin-midi-skirt", "target": "[data-opt=\"same\"]", "actions": [{"locIfNone": "W1D 1LL"}, {"sel": ["sequin-midi-skirt", "12"]}], "title": "Ship from store", "today": "Checkout offers Standard and Next Working Day only, tested from London and Manchester. No same-day option, and next day shows no date.", "now": "A store within 15 km with the size in stock delivers the same evening when ordered by 14:00. Next-day stays available at £9.95.", "tryit": ""}, {"id": "faster.day", "route": "#checkout", "target": "#nomChips", "actions": [{"locIfNone": "W1D 1LL"}, {"basket": [{"slug": "sequin-midi-skirt", "size": "12", "qty": 1}]}, {"method": "nominated"}], "title": "Choose your day, including Saturday", "today": "No date choice in checkout. Next working day is ‘Monday to Friday only (no weekend deliveries)’. Weekend slots exist only through the separate Harper service in London.", "now": "Shoppers pick the day that suits them. Saturdays are offered where a nearby store can fulfil the order.", "tryit": ""}]}, {"id": "soldout", "title": "Sold out isn’t gone", "score": "Unavailability 25%", "steps": [{"id": "soldout.store", "route": "#product-tailored-oversized-coat", "target": "#rescueStore", "actions": [{"sel": ["tailored-oversized-coat", "4P"]}], "title": "Sold out online, in stock in store", "today": "Tailored Oversized Coat size 4 is sold out and the only option is ‘Notify me if available’. There’s no store stock, alternative or back-order.", "now": "If a store holds the size, we still sell it: ship from that store or collect it. No lost sale.", "tryit": ""}, {"id": "soldout.soon", "route": "#product-tailored-oversized-coat", "target": "#rescueSoon", "actions": [{"sel": ["tailored-oversized-coat", "6P"]}], "title": "Coming back? Show the date", "today": "Sold-out sizes show no restock date or timeframe. The FAQ says a restock only appears in the description if one is due.", "now": "Inbound stock is visible, so shoppers can pre-order with an exact delivery date that carries through basket, checkout and confirmation.", "tryit": ""}, {"id": "soldout.notify", "route": "#product-tailored-oversized-coat", "target": "#rescueNotify", "actions": [{"sel": ["tailored-oversized-coat", "14R"]}], "title": "Notify me, only when it’s honest", "today": "Every sold-out size gets the same ‘Notify me if available’ button, and store stock isn’t shown.", "now": "Notify is offered only when no store has it and nothing is inbound, alongside the sizes in stock now.", "tryit": ""}, {"id": "soldout.aisle", "route": "#product-tailored-oversized-coat", "target": ".aisle", "actions": [{"sel": ["tailored-oversized-coat", "6R"]}], "title": "Order in store, made visible", "today": "No order-in-store or endless aisle option. For out-of-stock items, the FAQ suggests checking with Stores or Customer Care.", "now": "The product page tells shoppers that store staff can order any size from the whole network and send it home.", "tryit": ""}]}, {"id": "returns", "title": "Returns, exchanges and order changes", "score": "Returns 60%", "steps": [{"id": "returns.edit", "route": "#confirmation", "target": "#editOrder", "actions": [{"order": true}], "title": "Change or cancel before release", "today": "Orders can’t be amended once placed. Cancelling means calling within 15 minutes, and it’s ‘not guaranteed’.", "now": "A 30-minute window to change a size or cancel, before the order is released to the warehouse.", "tryit": "Change a size in the dropdown, or try Cancel order."}, {"id": "returns.store", "route": "#returns", "target": "#retMethod", "actions": [{"ret": "return"}], "title": "Return in any store", "today": "Online orders can’t be returned to any ME+EM store, including the Selfridges and Harrods concessions.", "now": "Drop off in any store for free and get refunded on the spot. Carrier returns stay available.", "tryit": ""}, {"id": "returns.strength", "route": "#returns", "target": "#retHead", "actions": [], "title": "Keep what already works", "today": "A paperless, Reveni-powered returns portal with instant size exchanges, drop-off and collection, free within 28 days.", "now": "Same simple portal, with store drop-off and exchanges added.", "tryit": ""}]}, {"id": "promise", "title": "Address-aware delivery promise", "score": "Browsing 31%", "steps": [{"id": "promise.postcode", "route": "#product-sequin-midi-skirt", "target": "#deliveryBlock", "actions": [{"loc": "W1D 1LL"}, {"unsel": "sequin-midi-skirt"}], "title": "A promise for this postcode", "today": "The product page says ‘Order by 4pm for next working day delivery in the UK’, with no date, cost or postcode.", "now": "Dates for W1D 1LL London, worked out from where the stock actually is, warehouse or nearby store.", "tryit": ""}, {"id": "promise.compare", "route": "#product-sequin-midi-skirt", "target": "#deliveryBlock", "actions": [{"loc": "ZE1 0AA"}, {"unsel": "sequin-midi-skirt"}], "title": "Different address, different promise", "today": "Checkout shows the same options for SW1E 5NA (London) and M1 1RG (Manchester). Nothing changes with the postcode.", "now": "Switch to ZE1 0AA Lerwick and the standard date, next-day availability, same-day availability and the Click & Collect store change with the address.", "tryit": ""}, {"id": "promise.first", "route": "#checkout", "target": "#deliveryFirst", "actions": [{"loc": "ZE1 0AA"}, {"basket": [{"slug": "sequin-midi-skirt", "size": "12", "qty": 1}]}, {"method": "std"}], "title": "Delivery options before personal details", "today": "Delivery options only appear after a full address, and no delivery date is shown at any step.", "now": "Options and exact dates come first, from the basket and postcode alone. Contact details come after, and any country code is accepted.", "tryit": "Change the postcode to M1 1AE and watch the dates update."}]}], "demo": {"pc": "W1D 1LL", "farPc": "ZE1 0AA", "orderLines": [{"slug": "sequin-midi-skirt", "size": "12", "qty": 1}, {"slug": "tailored-oversized-coat", "size": "6R", "qty": 1}]}};
+const PRODUCTS=D.products, STORES=D.stores, MK=D.market, FEES=D.fees, BR=D.brand;
+const T = D.i18n;
+/* ================= state ================= */
+const S = {
+  lang:D.lang, loc:null, basket:[], sel:{}, sort:"rec", wish:{}, filters:{same:false,store:false},
+  form:{email:"",phone:"",fname:"",lname:"",street:"",pc:"",city:"",method:"std",store:null,pay:MK.payments[0],nomDate:null},
+  locErr:{}, errors:{}, order:null, sizeErr:false, notify:{}, notifyErr:false, reserved:{},
+  modal:null, toast:null, ret:{step:"find",no:"",email:"",err:false,order:null,sel:{},method:"store",store:null,result:null,errItems:false},
+  tour:null
+};
+const t = k => { const v=(T[S.lang]&&T[S.lang][k]!==undefined)?T[S.lang][k]:T.en[k];
+  if(typeof v==="string" && /\{\d\}/.test(v)) return (...a)=>v.replace(/\{(\d)\}/g,(m,i)=>a[+i]===undefined?"":a[+i]);
+  return v; };
+const locOf = () => (MK.localeByLang&&MK.localeByLang[S.lang]) || t("locale");
+const orList = xs => { try{ return new Intl.ListFormat(locOf(),{type:"disjunction"}).format(xs);}catch(e){ return xs.join(" / "); } };
+const hm = h => `${String(h).padStart(2,"0")}:00`;
+
+/* ================= helpers ================= */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money = v => new Intl.NumberFormat(locOf(),{style:"currency",currency:MK.currency}).format(v);
+const bySlug = s => PRODUCTS.find(p=>p.slug===s);
+const pIndex = p => PRODUCTS.indexOf(p);
+const short = s => s.name.startsWith(BR.storePrefix)?s.name.slice(BR.storePrefix.length):s.name;
+const ic = (k,px) => ICON[k].replace('<svg',`<svg style="width:${px}px;height:${px}px;vertical-align:-3px"`);
+
+const ICON = {
+  truck:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h4.5L21 12.5V16h-8z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>',
+  fast:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m9 15 2 2 4-4"/></svg>',
+  calpick:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/><rect x="13" y="13" width="4" height="4" fill="currentColor"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg>',
+  store:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9 5 4h14l2 5M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0zM5 13v8h14v-8M10 21v-5h4v5"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 5 5"/></svg>',
+  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4.5 4.5-6 8-6s7 1.5 8 6"/></svg>',
+  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 20s-7.5-4.6-9-9.3C2 7.5 4 4.5 7.2 4.5c2 0 3.6 1.2 4.8 2.9 1.2-1.7 2.8-2.9 4.8-2.9 3.2 0 5.2 3 4.2 6.2-1.5 4.7-9 9.3-9 9.3z"/></svg>',
+  bag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 8h16l-1 13H5z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  ret:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9h12a4 4 0 0 1 0 8H8"/><path d="m8 5-4 4 4 4"/></svg>',
+  tablet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="1.5"/><path d="M10 18.5h4"/></svg>'
+};
+
+function garment(p){
+  const c=p.hex, sh='rgba(0,0,0,.22)', hl='rgba(255,255,255,.10)';
+  const grad=`<defs><linearGradient id="g${p.slug}" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".10"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient></defs>`;
+  const torso='M118 72 Q150 88 182 72 L214 82 Q240 92 248 122 L272 292 L238 300 L216 168 L214 304 L86 304 L84 168 L62 300 L28 292 L52 122 Q60 92 86 82 Z';
+  let body='';
+  if(p.shape==='jacket'){
+    body=`<path d="${torso}" fill="${c}"/><path d="${torso}" fill="url(#g${p.slug})"/>
+    <path d="M118 72 Q150 94 182 72 L180 60 Q150 80 120 60 Z" fill="${sh}"/>
+    <rect x="86" y="290" width="128" height="20" fill="${sh}"/>
+    <path d="M28 292 L62 300 L60 318 L25 310 Z M272 292 L238 300 L240 318 L275 310 Z" fill="${sh}"/>
+    <path d="M150 86 L150 310" stroke="${hl}" stroke-width="3"/>
+    <path d="M100 205 L128 205 M172 205 L200 205 M231 150 L246 148" stroke="${hl}" stroke-width="3"/>`;
+  } else if(p.shape==='knit'){
+    let ribs=''; for(let x=90;x<212;x+=7) ribs+=`<path d="M${x} 288 V304" stroke="${sh}" stroke-width="2"/>`;
+    body=`<path d="${torso}" fill="${c}"/><path d="${torso}" fill="url(#g${p.slug})"/>
+    <path d="M118 72 Q150 98 182 72 L178 66 Q150 88 122 66 Z" fill="${sh}"/>
+    ${ribs}<path d="M30 284 L64 292 M270 284 L236 292" stroke="${sh}" stroke-width="10"/>`;
+  } else if(p.shape==='hoodie'){
+    body=`<path d="M112 80 Q104 26 150 22 Q196 26 188 80 Z" fill="${c}"/><path d="M112 80 Q104 26 150 22 Q196 26 188 80 Z" fill="${sh}" opacity=".5"/>
+    <path d="${torso}" fill="${c}"/><path d="${torso}" fill="url(#g${p.slug})"/>
+    <path d="M122 76 Q150 42 178 76 Q150 96 122 76 Z" fill="${sh}"/>
+    <path d="M140 88 L138 140 M160 88 L162 140" stroke="#e8e8e8" stroke-width="2.5"/>
+    <path d="M106 222 L194 222 L206 284 L94 284 Z" fill="none" stroke="${sh}" stroke-width="3"/>
+    <rect x="86" y="290" width="128" height="16" fill="${sh}"/>`;
+  } else if(p.shape==='tee' || p.shape==='shirt'){
+    const tee='M112 60 Q150 80 188 60 L246 88 L226 150 L206 140 L210 320 L90 320 L94 140 L74 150 L54 88 Z';
+    body=`<path d="${tee}" fill="${c}"/><path d="${tee}" fill="url(#g${p.slug})"/><path d="M112 60 Q150 86 188 60" stroke="${sh}" stroke-width="6" fill="none"/>${p.shape==='shirt'?`<path d="M150 70 V320" stroke="${hl}" stroke-width="3"/><path d="M128 58 L150 92 L172 58" fill="none" stroke="${sh}" stroke-width="5"/>`:""}`;
+  } else if(p.shape==='dress'){
+    const dr='M122 40 L178 40 L186 120 L242 360 L58 360 L114 120 Z';
+    body=`<path d="${dr}" fill="${c}"/><path d="${dr}" fill="url(#g${p.slug})"/><path d="M116 120 H184" stroke="${sh}" stroke-width="6"/>`;
+  } else if(p.shape==='shoe'){
+    const sh1='M40 250 Q60 170 120 175 L170 200 Q230 210 262 245 Q270 270 250 280 L50 282 Q36 276 40 250 Z';
+    body=`<path d="${sh1}" fill="${c}"/><path d="${sh1}" fill="url(#g${p.slug})"/><path d="M44 270 H262" stroke="#eee" stroke-width="10"/><path d="M120 180 L150 230 M140 186 L168 230" stroke="${hl}" stroke-width="4"/>`;
+  } else if(p.shape==='bag'){
+    const bg='M70 150 H230 L246 340 H54 Z';
+    body=`<path d="M110 150 Q110 80 150 80 Q190 80 190 150" fill="none" stroke="${c}" stroke-width="12"/><path d="${bg}" fill="${c}"/><path d="${bg}" fill="url(#g${p.slug})"/>`;
+  } else if(p.shape==='box'){
+    body=`<rect x="60" y="110" width="180" height="200" rx="6" fill="${c}"/><rect x="60" y="110" width="180" height="200" rx="6" fill="url(#g${p.slug})"/><path d="M60 150 H240" stroke="${sh}" stroke-width="6"/>`;
+  } else {
+    const legs='M98 40 L202 40 L212 64 L226 372 L168 376 L153 160 L147 160 L132 376 L74 372 L88 64 Z';
+    body=`<path d="${legs}" fill="${c}"/><path d="${legs}" fill="url(#g${p.slug})"/>
+    <rect x="98" y="40" width="104" height="18" fill="${sh}"/>
+    <path d="M150 58 Q147 112 152 156" stroke="#a87b45" stroke-width="2" stroke-dasharray="4 3" fill="none"/>
+    <path d="M100 66 Q120 92 140 66 M200 66 Q180 92 160 66" stroke="#a87b45" stroke-width="2" stroke-dasharray="4 3" fill="none"/>
+    <path d="M112 40 V58 M188 40 V58 M150 40 V58" stroke="${hl}" stroke-width="5"/>`;
+    if(p.shape==='trousers') body=body.replace(/stroke="#a87b45"/g,`stroke="${sh}"`);
+  }
+  return `<svg viewBox="0 0 300 400" role="img" aria-label="${esc(p.name)}">${grad}${body}</svg>`;
+}
+function photo(p, cls=''){
+  const img = p.img ? `<img src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy" onload="this.parentNode.classList.add('has-photo')" onerror="this.remove()">` : "";
+  return `<span class="ph ${cls}"><span class="art">${garment(p)}</span>${img}</span>`;
+}
+
+/* ================= delivery engine ================= */
+const HOLIDAYS = new Set(D.holidays);
+const iso = d => d.toISOString().slice(0,10);
+function dkClock(){
+  const parts = new Intl.DateTimeFormat("en-GB",{timeZone:MK.tz,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).formatToParts(new Date());
+  const g = k => +parts.find(x=>x.type===k).value;
+  return {today:new Date(Date.UTC(g("year"),g("month")-1,g("day"))), h:g("hour"), m:g("minute")};
+}
+const addDays = (d,n) => new Date(d.getTime()+n*864e5);
+const isBiz = d => { const w=d.getUTCDay(); return w>=1 && w<=5 && !HOLIDAYS.has(iso(d)); };
+const nextBiz = d => { let x=addDays(d,1); while(!isBiz(x)) x=addDays(x,1); return x; };
+const addBiz = (d,n) => { let x=d; for(let i=0;i<n;i++) x=nextBiz(x); return x; };
+const CUTOFF = FEES.cutoffHour, SAME_CUTOFF = FEES.sameCutoffHour, SAME_WINDOW = D.sameWindow, SAME_KM = D.sameKm, FREE_OVER = FEES.freeOver;
+const hhmm = mins => `${String(Math.floor(mins/60)%24).padStart(2,"0")}:${String(mins%60).padStart(2,"0")}`;
+function dispatchDay(){ const c=dkClock(); return (isBiz(c.today) && c.h<CUTOFF) ? c.today : nextBiz(c.today); }
+function fmtDate(d, sh, bare){
+  const loc = locOf();
+  const c=dkClock(); const diff=Math.round((d-c.today)/864e5);
+  const base = new Intl.DateTimeFormat(loc, sh?{weekday:"short",day:"numeric",month:"short",timeZone:"UTC"}:{weekday:"long",day:"numeric",month:"long",timeZone:"UTC"}).format(d);
+  if(bare) return base;
+  if(diff===0) return t("todayP")+base;
+  if(diff===1) return t("tomorrowP")+base;
+  return base;
+}
+/* postcode resolution, driven by the market pack */
+const PC=MK.postcode;
+const normPc = raw => { let s=String(raw||"").trim().toUpperCase(); if(PC.strip) s=s.replace(new RegExp(PC.strip),""); return s; };
+const isFullPc = raw => new RegExp(PC.full).test(normPc(raw));
+const keyOf = s => PC.mode==="alpha" ? s.replace(/\s+/g,"") : s.replace(/\D/g,"").slice(0,PC.digits);
+function longestPrefix(list, key){ let best=null,len=0; for(const it of list){ const p=String(it[0]); if(key.startsWith(p) && p.length>len){ best=it; len=p.length; } } return best; }
+function zoneFor(key){ const r=longestPrefix(MK.zoneRules,key); return r?r[1]:MK.defaultZone; }
+function placeFor(key){
+  if(PC.mode==="alpha"){
+    const area=(key.match(new RegExp(PC.area))||[""])[0];
+    return MK.places.find(p=>p[0]===area) || longestPrefix(MK.places,key);
+  }
+  let best=null,sh=-1,dist=1e9;
+  for(const p of MK.places){ let i=0; while(i<key.length && key[i]===p[0][i]) i++;
+    const dd=Math.abs(parseInt(key,10)-parseInt(p[0],10));
+    if(i>sh || (i===sh && dd<dist)){ best=p; sh=i; dist=dd; } }
+  return sh>=1?best:null;
+}
+function resolvePlace(raw){
+  const q=String(raw||"").trim(); if(!q) return {err:"locErr"};
+  const n=normPc(q);
+  if(new RegExp(PC.full).test(n) || new RegExp(PC.partial).test(n)){
+    const key=keyOf(n);
+    if(MK.unsupported.some(u=>key.startsWith(u))) return {err:"locUnsupported"};
+    const pl=placeFor(key), zone=zoneFor(key);
+    const show = PC.display==="### ##" ? key.slice(0,3)+" "+key.slice(3) : n.replace(/\s+/g," ");
+    return {loc:{pc:show, city:pl?pl[1]:"", lat:pl?pl[2]:MK.centroid[0], lng:pl?pl[3]:MK.centroid[1], zone}};
+  }
+  const s=q.toLowerCase();
+  const hit = MK.places.find(r=>r[1].toLowerCase()===s || r[4].includes(s));
+  if(hit){ const key=keyOf(String(hit[0])); const show=PC.mode==="alpha"?hit[0]:(PC.display==="### ##"?key.slice(0,3)+" "+key.slice(3):hit[0]); return {loc:{pc:show, city:hit[1], lat:hit[2], lng:hit[3], zone:zoneFor(key)}}; }
+  return {err:"locErr"};
+}
+const locLabel = l => `${l.pc}${l.city?" "+l.city:""}`;
+function km(a,b){const R=6371,r=x=>x*Math.PI/180;const dLa=r(b.lat-a.lat),dLo=r(b.lng-a.lng);const h=Math.sin(dLa/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dLo/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
+function nearestStores(n=3, loc=S.loc){ if(!loc) return []; return STORES.map(s=>({...s,dist:km(loc,s)})).sort((a,b)=>a.dist-b.dist).slice(0,n); }
+
+/* stock: online sizes + store stock per store */
+function sizeState(p,size){ const z=p.sizes.find(x=>x[0]===size); if(!z||z[1]) return "in"; if(z[3]) return "store"; return z[2]?"soon":"notify"; }
+function incomingDate(p,size){ const z=p.sizes.find(x=>x[0]===size); if(!z||z[1]||!z[2]) return null; return addBiz(dkClock().today, z[2]); }
+function baseFor(lines){ let d=dispatchDay(); for(const l of lines||[]){ const i=incomingDate(bySlug(l.slug),l.size); if(i && i>d) d=i; } return d; }
+function storeQty(store, p, size){ const s=D.stock[store.id]; return (s && s[p.slug] && s[p.slug][size]) || 0; }
+const storeHasAny = (store,p) => p.sizes.some(z=>storeQty(store,p,z[0])>0);
+/* spec = {slug} (product level) or {lines:[{slug,size,qty}]} */
+const stocked = (store,spec) => spec.lines ? (spec.lines.length>0 && spec.lines.every(l=>storeQty(store,bySlug(l.slug),l.size)>=(l.qty||1))) : storeHasAny(store,bySlug(spec.slug));
+function bestStore(spec){ const ns=nearestStores(3); return ns.find(s=>stocked(s,spec)) || ns[0]; }
+const STORE_HOURS = w => w===0?MK.storeHours.sun:w===6?MK.storeHours.sat:MK.storeHours.wd;
+const storeOpen = d => !!STORE_HOURS(d.getUTCDay()) && !HOLIDAYS.has(iso(d));
+function nextOpenDay(d){ let x=addDays(d,1); while(!storeOpen(x)) x=addDays(x,1); return x; }
+function pickupReady(inStock, base){
+  const c=dkClock();
+  if(inStock){
+    const hrs=STORE_HOURS(c.today.getUTCDay()), nowMin=c.h*60+c.m;
+    if(storeOpen(c.today) && nowMin+60 <= hrs[1]*60){
+      let ready=Math.max(nowMin+60, hrs[0]*60+60); ready=Math.ceil(ready/15)*15;
+      return {date:c.today, time:hhmm(ready)};
+    }
+    return {date:nextOpenDay(c.today), time:"11:00"};
+  }
+  return {date:addBiz(base||dispatchDay(),3), time:"12:00"};
+}
+function sameDay(spec){
+  if(!S.loc) return null;
+  if(spec.lines && spec.lines.some(l=>sizeState(bySlug(l.slug),l.size)==="soon")) return null;
+  const st = nearestStores(8).filter(s=>s.dist<=SAME_KM).find(s=>stocked(s,spec));
+  if(!st) return null;
+  const c=dkClock();
+  const date = (storeOpen(c.today) && c.h<SAME_CUTOFF) ? c.today : nextOpenDay(c.today);
+  return {store:st, date};
+}
+const ZN = z => MK.zones[z] || MK.zones[MK.defaultZone];
+const STD_DAYS = new Proxy({}, {get:(o,z)=>ZN(z).std});
+const rangeOf = k => { const v=Object.values(MK.zones).map(z=>z[k]); return [Math.min(...v),Math.max(...v)]; };
+function methodDate(id, base){
+  if(!S.loc) return null;
+  const z=ZN(S.loc.zone), d0=base||dispatchDay();
+  if(id==="std") return addBiz(d0, z.std);
+  if(id==="fast") return addBiz(d0, z.fast);
+  if(id==="next") return z.next?addBiz(d0,1):null;
+  return null;
+}
+function nomDates(spec){
+  if(!S.loc) return [];
+  const base=baseFor(spec.lines), start=methodDate("fast",base), sat=!!sameDay(spec);
+  const out=[]; let d=start;
+  while(out.length<6){ if(isBiz(d) || (sat && d.getUTCDay()===6 && !HOLIDAYS.has(iso(d)))) out.push(d); d=addDays(d,1); }
+  return out;
+}
+function cutoffLeft(){ const c=dkClock(); if(!isBiz(c.today) || c.h>=CUTOFF) return null; const left=CUTOFF*60-(c.h*60+c.m); return [Math.floor(left/60), left%60]; }
+/* one place that answers "what exactly do we promise for this method?" */
+function promiseFor(id, spec, storeId){
+  if(!S.loc) return null;
+  const base=baseFor(spec.lines);
+  if(id==="std"||id==="fast"||id==="next"){ const d=methodDate(id,base); return d?{date:d}:null; }
+  if(id==="same"){ const s=sameDay(spec); return s?{date:s.date, window:SAME_WINDOW, store:s.store}:null; }
+  if(id==="nominated"){ const list=nomDates(spec); const pick=list.find(d=>iso(d)===S.form.nomDate)||list[0]; return {date:pick, list}; }
+  if(id==="pickup"){
+    const st=(storeId && nearestStores(3).find(s=>s.id===storeId)) || bestStore(spec);
+    const inS=stocked(st,spec), r=pickupReady(inS, base);
+    return {date:r.date, time:r.time, store:st, inStock:inS};
+  }
+  return null;
+}
+const subtotal = () => S.basket.reduce((a,l)=>a+bySlug(l.slug).price*l.qty,0);
+function methodPrice(id){ return {std:subtotal()>=FREE_OVER?0:FEES.std, fast:FEES.fast, next:FEES.next, same:FEES.same, nominated:FEES.nominated, pickup:0}[id]; }
+function priceLabel(id, ctx){
+  if(id==="pickup") return t("free");
+  if(id==="std" && (ctx==="pdp")) return `${money(FEES.std)}<div class="d" style="font-weight:500">${t("freeOver")(money(FREE_OVER))}</div>`;
+  const v=methodPrice(id); return v===0?t("free"):money(v);
+}
+function genText(id){
+  if(id==="std"){ const r=rangeOf("std"); return t("stdG")(r[0],r[1]); }
+  if(id==="fast"){ const r=rangeOf("fast"); return t("fastG")(r[0],r[1]); }
+  if(id==="next") return t("nextG")(hm(CUTOFF));
+  if(id==="same") return t("sameG")(hm(SAME_CUTOFF));
+  return t(id+"G");
+}
+const METHODS = [["std","truck"],["fast","fast"],["next","cal"],["same","clock"],["nominated","calpick"],["pickup","store"]];
+
+/* ================= shared UI ================= */
+function locBlock(ctx){
+  const err = S.locErr[ctx];
+  if(S.loc && !S.editLoc?.[ctx]){
+    return `<div class="loc"><div class="set"><span>${ic("pin",16)} ${t("deliverTo")} <b>${esc(locLabel(S.loc))}</b></span><button class="linkbtn" data-act="editloc" data-ctx="${ctx}">${t("change")}</button></div></div>`;
+  }
+  return `<form class="loc" data-locform="${ctx}" novalidate>
+    <label for="loc-${ctx}">${t("locLabel")}</label>
+    <div class="row"><input id="loc-${ctx}" name="q" autocomplete="postal-code" placeholder="${t("locPh")(MK.demo.examplePc, MK.demo.exampleCity)}" value="${esc(S.locDraft?.[ctx]||"")}"><button class="btn sm" type="submit">${t("locBtn")}</button></div>
+    ${err?`<div class="err" role="alert">${t(err)}</div>`:""}
+  </form>`;
+}
+/* text describing one method for a spec; returns {html, na} */
+function methodText(id, spec, storeId){
+  const base=baseFor(spec.lines), delayed=iso(base)!==iso(dispatchDay());
+  if(!S.loc) return {html:`<div class="d">${genText(id)}${delayed&&id!=="same"?" "+t("fromDate")(fmtDate(base,true)):""}</div>`, na:false};
+  const p=promiseFor(id, spec, storeId);
+  if(!p){ return {html:`<div class="d">${t(id==="next"?"nextNA":"sameNA")}</div>`, na:true}; }
+  if(id==="pickup") return {html:`<div class="d exact">${t("ready")(fmtDate(p.date),p.time)}<br><span class="store-line">${esc(p.store.name)}, ${t("km")(Math.round(p.store.dist))}</span></div>`};
+  if(id==="same") return {html:`<div class="d exact">${t("sameExact")(fmtDate(p.date),SAME_WINDOW)}<br><span class="store-line">${t("fromStore")(esc(p.store.name))}</span></div>`};
+  if(id==="nominated"){
+    if(spec.choose) return {html:`<div class="d exact">${t("exact")(fmtDate(p.date))}</div>`};
+    return {html:`<div class="d exact">${t("nomFrom")(fmtDate(p.list[0],true), p.list.some(d=>d.getUTCDay()===6)?t("satSuffix"):"")}</div>`};
+  }
+  const left = (!delayed && id==="next") ? cutoffLeft() : null;
+  return {html:`<div class="d exact">${t("exact")(fmtDate(p.date))}${left?` <span style="color:var(--muted)">(${t("orderWithin")(left[0],left[1])})</span>`:""}</div>`};
+}
+function optionRows(ctx){
+  const spec = ctx==="pdp" ? (S.sel[S.curSlug]?{lines:[{slug:S.curSlug,size:S.sel[S.curSlug],qty:1}]}:{slug:S.curSlug}) : {lines:S.basket};
+  if(ctx==="pdp" && spec.lines && sizeState(bySlug(S.curSlug),spec.lines[0].size)==="notify") return `<p class="hint">${t("noDate")}</p>`;
+  return `<div class="opts">${METHODS.map(([id,icon])=>{
+    const m=methodText(id,spec);
+    return `<div class="opt${m.na?" na":""}" data-opt="${id}">${ICON[icon]}<div><div class="t">${t(id)}</div>${m.html}</div><div class="p">${priceLabel(id,ctx)}</div></div>`;
+  }).join("")}</div>`;
+}
+function cardDelivery(p){
+  if(!S.loc) return `<div class="dlv-mini"><div>${ICON.truck}<span>${t("cardStd")(...rangeOf("std"))}</span></div><div>${ICON.store}<span>${t("cardStore")}</span></div></div>`;
+  const spec={slug:p.slug}, sd=sameDay(spec);
+  const line1 = sd ? `<span class="ok">${t("cardSame")(`<b>${fmtDate(sd.date,true)}</b>`, SAME_WINDOW)}</span>` : t("cardFrom")(`<b>${fmtDate(methodDate("next")||methodDate("fast"),true)}</b>`);
+  const st=bestStore(spec), has=stocked(st,spec), r=pickupReady(has);
+  const storeTxt = has ? (iso(r.date)===iso(dkClock().today) ? `<span class="ok">${t("cardStoreNow")(esc(short(st)))}</span>` : `<span class="ok">${t("cardStoreTomorrow")(esc(short(st)))}</span>, ${fmtDate(r.date,true)}`) : t("cardStoreFrom")(esc(short(st)), fmtDate(r.date,true));
+  return `<div class="dlv-mini"><div>${sd?ICON.clock:ICON.truck}<span>${line1}</span></div><div>${ICON.store}<span>${storeTxt}</span></div></div>`;
+}
+const priceHTML = p => `<div class="price"><span class="now${p.old?" red":""}">${money(p.price)}</span>${p.old?`<s>${money(p.old)}</s>`:""}</div>`;
+function lineTag(l){
+  const p=bySlug(l.slug), st=sizeState(p,l.size);
+  if(st==="soon") return ` · <span class="ok">${t("preShort")}</span>`;
+  if(st==="store") return ` · <span class="ok">${t("fromStoreTag")}</span>`;
+  return "";
+}
+
+/* ================= views ================= */
+function viewPLP(){
+  let list=[...PRODUCTS];
+  if(S.sort==="low") list.sort((a,b)=>a.price-b.price);
+  if(S.sort==="high") list.sort((a,b)=>b.price-a.price);
+  const near = S.loc ? nearestStores(1)[0] : null;
+  if(S.loc && S.filters.same) list=list.filter(p=>sameDay({slug:p.slug}));
+  if(S.loc && S.filters.store) list=list.filter(p=>stocked(near,{slug:p.slug}));
+  const storeLabel = near ? t("fStore")(esc(short(near))) : t("fStoreGeneric");
+  return `<div class="wrap">
+    <nav class="crumbs" aria-label="breadcrumb"><a href="#products">${t("home")}</a><span>/</span><span>${t("men")}</span><span>/</span><span>${t("newin")}</span></nav>
+    <h1 class="page">${t("plpTitle")}</h1>
+    <p class="sub">${t("products")(list.length)}</p>
+    <div class="toolbar">
+      <div class="filters">
+        <button class="chip" type="button">${t("fSize")}</button><button class="chip" type="button">${t("fColour")}</button><button class="chip" type="button">${t("fPrice")}</button>
+        <button class="chip" type="button" data-act="filter" data-filter="same" aria-pressed="${!!(S.loc&&S.filters.same)}">${ICON.clock} ${t("fSame")}</button>
+        <button class="chip" type="button" data-act="filter" data-filter="store" aria-pressed="${!!(S.loc&&S.filters.store)}">${ICON.store} ${storeLabel}</button>
+        <button class="chip" type="button" data-act="plploc">${ICON.pin} ${S.loc?`${t("deliverTo")} ${esc(locLabel(S.loc))}`:t("setLoc")}</button>
+      </div>
+      <label><span class="sr">${t("sort")}</span><select class="chip" id="sort">
+        <option value="rec"${S.sort==="rec"?" selected":""}>${t("sort")}: ${t("sortRec")}</option>
+        <option value="low"${S.sort==="low"?" selected":""}>${t("sortLow")}</option>
+        <option value="high"${S.sort==="high"?" selected":""}>${t("sortHigh")}</option></select></label>
+    </div>
+    ${S.showPlpLoc?`<div style="max-width:520px;margin:-8px 0 24px">${S.pendingFilter?`<p class="hint" style="margin:0 0 8px">${t("filterNeedsLoc")}</p>`:""}${locBlock("plp")}</div>`:""}
+    ${list.length?`<div class="grid">${list.map(p=>{
+      const pct = p.old?Math.round((1-p.price/p.old)*100):0;
+      return `<article class="card" data-slug="${p.slug}">
+        <a class="ph-link" href="#product-${p.slug}" aria-label="${esc(p.name)}">${photo(p)}</a>
+        <div class="meta-row"><div class="badges">${pct?`<span class="badge sale">${t("sale")(pct)}</span>`:""}</div>
+          <button class="heart" type="button" aria-label="${t("wish")}" aria-pressed="${!!S.wish[p.slug]}" data-act="wish" data-slug="${p.slug}">${ICON.heart}</button></div>
+        <div class="brand">${esc(p.brand)}</div>
+        <a class="name" href="#product-${p.slug}">${esc(p.name)}</a>
+        ${priceHTML(p)}
+        <div class="swatch"><i style="background:${p.hex}"></i>${esc(p.color)}</div>
+        ${cardDelivery(p)}
+      </article>`;}).join("")}</div>`:`<div class="noresults"><p>${t("noResults")}</p><button class="btn ghost" data-act="clearfilters">${t("clearFilters")}</button></div>`}
+  </div>`;
+}
+
+function viewPDP(p){
+  S.curSlug=p.slug;
+  const sel=S.sel[p.slug], d=p.desc[S.lang]||p.desc.en||Object.values(p.desc)[0]||{intro:"",attrs:[]};
+  const pct = p.old?Math.round((1-p.price/p.old)*100):0;
+  const state = sel ? sizeState(p,sel) : "in";
+  const pdpBase = sel ? baseFor([{slug:p.slug,size:sel}]) : dispatchDay();
+  const hasOOS = p.sizes.some(z=>!z[1]);
+  const bagBtn = label => `<button class="btn block" type="button" data-act="add" id="addBtn">${ic("bag",18)} ${label}</button>`;
+  let buy;
+  if(state==="soon"){
+    const inc=incomingDate(p,sel), std=methodDate("std",pdpBase);
+    buy=`<div class="rescue soon" id="rescueSoon"><h3>${t("soonH")(esc(sel),fmtDate(inc))}</h3><p>${t("soonP")}</p>${bagBtn(std?t("preorderDate")(fmtDate(std,true)):t("preorder"))}</div>`;
+  } else if(state==="store"){
+    const holders = STORES.filter(s=>storeQty(s,p,sel)>0).map(s=>({...s,dist:S.loc?km(S.loc,s):null})).sort((a,b)=>(a.dist??0)-(b.dist??0));
+    buy=`<div class="rescue store" id="rescueStore"><h3>${t("storeH")(holders.length)}</h3><p>${t("storeP")}</p>
+      <ul>${holders.slice(0,3).map(s=>{const r=pickupReady(true);return `<li><span>${esc(s.name)}<small>${esc(s.addr)}${s.dist!=null?`, ${t("km")(Math.round(s.dist))}`:""}</small></span><span style="text-align:right"><b class="ok">${t("storeIn")}</b><small>${t("ready")(fmtDate(r.date,true),r.time).replace(/<\/?b>/g,"")}</small></span></li>`;}).join("")}</ul>
+      ${bagBtn(t("addFromStore"))}</div>`;
+  } else if(state==="notify"){
+    const key=p.slug+"|"+sel, done=S.notify[key];
+    const alts=p.sizes.filter(z=>z[1]).map(z=>`<button type="button" data-act="size" data-size="${z[0]}">${z[0]}</button>`).join("");
+    buy = done
+      ? `<div class="rescue done" id="rescueNotify" role="status"><h3>${ic("check",16)} ${t("notifyDoneH")}</h3><p style="margin:0">${t("notifyDone")(esc(sel),esc(done))} <button class="linkbtn" data-act="unnotify">${t("notifyUndo")}</button></p>${alts?`<div class="alt"><span>${t("altSizes")}</span>${alts}</div>`:""}</div>`
+      : `<form class="rescue" id="rescueNotify" data-notifyform novalidate><h3>${t("notifyH")(esc(sel))}</h3><p>${t("notifyP")}</p>
+          <label class="sr" for="notify-email">${t("notifyLabel")}</label>
+          <div class="row"><input id="notify-email" type="email" autocomplete="email" placeholder="${t("notifyPh")}" value="${esc(S.form.email||"")}" ${S.notifyErr?'aria-invalid="true"':""}><button class="btn" type="submit">${t("notifyBtn")}</button></div>
+          ${S.notifyErr?`<div class="formerr" role="alert">${t("badEmail")}</div>`:""}
+          ${alts?`<div class="alt"><span>${t("altSizes")}</span>${alts}</div>`:""}</form>`;
+  } else buy=bagBtn(t("add"));
+
+  let storeHTML;
+  if(!S.loc) storeHTML=`<p class="hint">${t("storeEnter")}</p>`;
+  else if(!sel) storeHTML=`<p class="hint">${t("storeHint")}</p><div class="stores">${nearestStores(3).map(s=>`<div><span>${esc(s.name)}<small>${esc(s.addr)}</small></span><span style="white-space:nowrap">${t("km")(Math.round(s.dist))}</span></div>`).join("")}</div>`;
+  else storeHTML=`<div class="stores">${nearestStores(3).map(s=>{
+      const q=storeQty(s,p,sel), r=pickupReady(q>0,pdpBase), rk=`${p.slug}|${sel}|${s.id}`;
+      const action = q>0 ? (S.reserved[rk] ? `<span class="reserved">${ic("check",13)} ${t("reservedTag")}</span>` : `<button class="rbtn" type="button" data-act="reserve" data-store="${s.id}">${t("reserve")}</button>`) : "";
+      return `<div><span>${esc(s.name)}<small>${esc(s.addr)}, ${t("km")(Math.round(s.dist))}</small></span><span style="text-align:right">${q>0?`<b class="ok">${t("storeIn")}</b>`:`<span class="warn">${t("storeOut")}</span>`}<small>${t("ready")(fmtDate(r.date,true),r.time).replace(/<\/?b>/g,"")}</small>${action}</span></div>`;}).join("")}</div>`;
+
+  return `<div class="wrap">
+    <nav class="crumbs" aria-label="breadcrumb"><a href="#products">${t("home")}</a><span>/</span><a href="#products">${t("newin")}</a><span>/</span><span>${esc(p.cat[S.lang]||p.cat.en||"")}</span></nav>
+    <div class="pdp">
+      <div>${photo(p,"pdp-ph")}</div>
+      <div>
+        <div class="brand">${esc(p.brand)}</div>
+        <h1>${esc(p.name)}</h1>
+        ${priceHTML(p)}
+        ${pct?`<div class="badges" style="margin:6px 0 2px"><span class="badge sale">${t("sale")(pct)}</span></div>`:""}
+        <div class="swatch" style="font-size:14px;margin-top:10px"><i style="background:${p.hex};width:16px;height:16px"></i>${t("colour")}: <b style="color:var(--fg)">${esc(p.color)}</b></div>
+        <div class="section"><h2 style="display:flex;justify-content:space-between">${t("size")} <a href="#product-${p.slug}" style="font-weight:500;font-size:13px">${t("sizeGuide")}</a></h2>
+          <div class="sizes" role="group" aria-label="${t("size")}">${p.sizes.map(([z,st,inc,stores])=>{const cls=st?"":stores?" soon":inc?" soon":" oos"; const ttl=st?"":stores?t("lgStore"):inc?t("soonTitle"):t("outOfStock"); return `<button class="size${cls}" type="button" data-act="size" data-size="${z}" aria-pressed="${sel===z}" ${ttl?`title="${ttl}"`:""}>${z}${ttl?`<span class="sr">, ${ttl}</span>`:""}</button>`;}).join("")}</div>
+          ${hasOOS?`<div class="legend"><span><s>00</s> ${t("lgOut")}</span><span><i class="dot"></i> ${t("lgSoon")} / ${t("lgStore").toLowerCase()}</span></div>`:""}
+          ${S.sizeErr?`<div class="formerr" role="alert">${t("chooseSize")}</div>`:""}
+        </div>
+        <div class="section">${buy}</div>
+        <div class="section" id="deliveryBlock"><h2>${t("delivery")}</h2>${locBlock("pdp")}${optionRows("pdp")}</div>
+        <div class="section" id="storeStock"><h2>${t("storeStock")}</h2>${storeHTML}
+          <div class="aisle">${ICON.tablet}<span>${t("aisle")}</span></div></div>
+        <div class="section">
+          <details class="acc" open><summary>${t("desc")}</summary><p>${esc(d.intro)}</p></details>
+          <details class="acc"><summary>${t("details")}</summary><dl class="attrs">${d.attrs.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}<dt>${t("artno")}</dt><dd>${p.pid.split("_")[0]}</dd></dl></details>
+        </div>
+      </div>
+    </div></div>`;
+}
+
+function viewBasket(){
+  if(!S.basket.length) return `<div class="wrap empty"><h1 class="page">${t("empty")}</h1><p>${t("emptyTxt")}</p><a class="btn" href="#products">${t("shop")}</a></div>`;
+  const sub=subtotal(), ship=methodPrice("std"), toFree=Math.max(0,FREE_OVER-sub);
+  const std=promiseFor("std",{lines:S.basket});
+  return `<div class="wrap">
+    <nav class="crumbs"><a href="#products">${t("home")}</a><span>/</span><span>${t("basket")}</span></nav>
+    <h1 class="page">${t("basketTitle")}</h1><p class="sub">${t("products")(S.basket.reduce((a,l)=>a+l.qty,0))}</p>
+    <div class="two">
+      <div>${S.basket.map((l,i)=>{const p=bySlug(l.slug), st=sizeState(p,l.size);return `<div class="line">
+        <a href="#product-${p.slug}" aria-label="${esc(p.name)}">${photo(p,"sm")}</a>
+        <div><div class="brand">${esc(p.brand)}</div><a class="ttl" href="#product-${p.slug}">${esc(p.name)}</a>
+          <div class="info">${t("colour")}: ${esc(p.color)}<br>${t("sizeL")}: ${esc(l.size)}<br>${money(p.price)}</div>
+          ${st==="soon"?`<div class="pretag">${t("preTag")(fmtDate(incomingDate(p,l.size),true))}</div>`:st==="store"?`<div class="pretag">${t("fromStoreTag")}</div>`:""}
+          <div class="qty" role="group" aria-label="${t("qty")}"><button type="button" data-act="dec" data-i="${i}" aria-label="−">−</button><span>${l.qty}</span><button type="button" data-act="inc" data-i="${i}" aria-label="+">+</button></div>
+        </div>
+        <div style="text-align:right"><div style="font-weight:700">${money(p.price*l.qty)}</div><button class="linkbtn" style="margin-top:8px" data-act="rm" data-i="${i}">${t("remove")}</button></div>
+      </div>`;}).join("")}
+      <div style="margin-top:22px" id="basketDelivery"><h2 style="font-size:16px;margin:0 0 10px">${t("delivery")}</h2>${locBlock("basket")}${optionRows("basket")}${S.basket.some(l=>sizeState(bySlug(l.slug),l.size)==="soon")?`<p class="hint">${t("shipTogether")}</p>`:""}</div>
+      </div>
+      <aside class="panel" id="basketPanel"><h2>${t("summary")}</h2>
+        <div style="font-size:13px">${toFree>0?t("toFree")(money(toFree)):`<span class="ok">${t("gotFree")}</span>`}</div>
+        <div class="freebar"><i style="width:${Math.min(100,sub/FREE_OVER*100)}%"></i></div>
+        <div class="tot"><div><span>${t("subtotal")}</span><span>${money(sub)}</span></div>
+          <div><span>${t("shipping")}</span><span>${ship?money(ship):t("free")}</span></div>
+          <div class="grand"><span>${t("total")}</span><span>${money(sub+ship)}</span></div>
+          <div style="color:var(--muted);font-size:12.5px">${t("vat")}</div></div>
+        ${std?`<div class="promise"><b>${t("yourDate")}: ${fmtDate(std.date)}</b>${t("std")}, ${esc(locLabel(S.loc))}</div>`:""}
+        <a class="btn block" style="margin-top:16px" href="#checkout" id="toCheckout">${t("toCheckout")}</a>
+        <a class="btn ghost block" style="margin-top:10px" href="#products">${t("continue")}</a>
+      </aside>
+    </div></div>`;
+}
+
+function field(name,label,opts={}){
+  const v=S.form[name]||"", e=S.errors[name];
+  return `<div class="f ${opts.full?"full":""}"><label for="f-${name}">${label}</label><input id="f-${name}" name="${name}" value="${esc(v)}" ${opts.attr||""} ${e?'aria-invalid="true"':""}>${e?`<div class="msg">${e}</div>`:""}${opts.hint?`<div class="hint" style="margin-top:4px;font-size:12px">${opts.hint}</div>`:""}</div>`;
+}
+function checkoutMethods(){
+  const f=S.form, spec={lines:S.basket, choose:true};
+  let html=`<div class="opts" role="radiogroup" aria-label="${t("method")}">${METHODS.map(([id,icon])=>{
+    const m=methodText(id,spec,f.store);
+    return `<label class="opt choose${m.na?" na":""}" data-opt="${id}"><input type="radio" name="method" value="${id}" ${f.method===id?"checked":""} ${m.na?"disabled":""}><span class="radio"></span>${ICON[icon]}<div><div class="t">${t(id)}</div>${m.html}</div><div class="p">${priceLabel(id,"checkout")}</div></label>`;
+  }).join("")}</div>`;
+  if(!S.loc) html+=`<p class="hint">${t("methodHint")}</p>`;
+  if(f.method==="nominated" && S.loc){
+    const p=promiseFor("nominated",spec);
+    html+=`<div id="nomChips" style="padding-top:2px"><h3 style="font-size:14px;margin:18px 0 0">${t("nomPick")}</h3><div class="datechips" role="radiogroup" aria-label="${t("nomPick")}">${p.list.map(d=>`<label class="datechip"><input type="radio" name="nomDate" value="${iso(d)}" ${iso(d)===iso(p.date)?"checked":""}><span>${fmtDate(d,true,true)}${d.getUTCDay()===6?`<small>${t("satNote")}</small>`:""}</span></label>`).join("")}</div></div>`;
+  }
+  if(f.method==="pickup" && S.loc){
+    const def=promiseFor("pickup",spec,f.store).store.id;
+    html+=`<h3 style="font-size:14px;margin:18px 0 8px">${t("pickStore")}</h3><div class="opts">${nearestStores(3).map(s=>{
+      const inS=stocked(s,spec), r=pickupReady(inS, baseFor(S.basket));
+      return `<label class="opt choose"><input type="radio" name="store" value="${s.id}" ${def===s.id?"checked":""}><span class="radio"></span>${ICON.store}<div><div class="t">${esc(s.name)}</div><div class="d">${esc(s.addr)}, ${t("km")(Math.round(s.dist))}</div><div class="d exact">${inS?`<b class="ok">${t("storeIn")}</b>. `:""}${t("ready")(fmtDate(r.date),r.time)}</div></div><div class="p">${t("free")}</div></label>`;}).join("")}</div>`;
+  }
+  if(S.errors.method) html+=`<div class="formerr">${S.errors.method}</div>`;
+  return html;
+}
+function promiseLine(id,p){
+  if(id==="pickup") return {head:`${t("yourPickup")}: ${fmtDate(p.date)}, ${p.time}`, sub:esc(p.store.name)};
+  if(id==="same") return {head:`${t("yourDate")}: ${fmtDate(p.date)}, ${p.window}`, sub:`${t(id)}, ${esc(locLabel(S.loc))}`};
+  return {head:`${t("yourDate")}: ${fmtDate(p.date)}`, sub:`${t(id)}, ${esc(locLabel(S.loc))}`};
+}
+function checkoutSummary(){
+  const f=S.form, sub=subtotal(), sp=methodPrice(f.method);
+  const p=promiseFor(f.method,{lines:S.basket},f.store); const pl=p?promiseLine(f.method,p):null;
+  return `<h2>${t("summary")}</h2>${S.basket.map(l=>{const pr=bySlug(l.slug);return `<div class="mini-line">${photo(pr,"sm")}<div><div style="font-weight:600;line-height:1.3">${esc(pr.name)}</div><div style="color:var(--muted);font-size:12.5px">${esc(l.size)} · ${l.qty} ×${lineTag(l)}</div></div><div style="font-weight:700">${money(pr.price*l.qty)}</div></div>`;}).join("")}
+    <div class="tot"><div><span>${t("subtotal")}</span><span>${money(sub)}</span></div><div><span>${t(f.method)}</span><span>${sp?money(sp):t("free")}</span></div>
+    <div class="grand"><span>${t("total")}</span><span>${money(sub+sp)}</span></div><div style="color:var(--muted);font-size:12.5px">${t("vat")}</div></div>
+    ${pl?`<div class="promise"><b>${pl.head}</b>${pl.sub}</div>`:""}`;
+}
+function viewCheckout(){
+  if(!S.basket.length) return viewBasket();
+  if(S.loc && !S.form.pc){ S.form.pc=S.loc.pc; S.form.city=S.loc.city; }
+  const f=S.form;
+  return `<div class="wrap">
+    <nav class="crumbs"><a href="#products">${t("home")}</a><span>/</span><a href="#basket">${t("basket")}</a><span>/</span><span>${t("checkout")}</span></nav>
+    <h1 class="page">${t("checkout")}</h1>
+    <div class="steps" aria-label="progress"><span>1. ${t("stepBasket")}</span><span class="on">2. ${t("stepDelivery")}</span><span class="on">3. ${t("stepPay")}</span></div>
+    <div class="two"><form id="co" novalidate>
+      <fieldset id="deliveryFirst"><legend>${t("whereDeliver")}</legend><p class="hint" style="margin:-4px 0 12px">${t("whereHint")}</p>
+        <div class="fields">${field("pc",t("pc"),{attr:`autocomplete="postal-code" inputmode="${PC.inputmode}" maxlength="${PC.maxlength}"`})}${field("city",t("city"),{attr:'autocomplete="address-level2"'})}</div>
+        <div id="methods" style="margin-top:14px">${checkoutMethods()}</div></fieldset>
+      <fieldset><legend>${t("contactAddr")}</legend><div class="fields">
+        ${field("email",t("email"),{full:true,attr:'type="email" autocomplete="email"'})}
+        ${field("phone",t("phone"),{full:true,attr:'type="tel" autocomplete="tel"',hint:t("phoneHint")})}
+        ${field("fname",t("fname"),{attr:'autocomplete="given-name"'})}${field("lname",t("lname"),{attr:'autocomplete="family-name"'})}
+        ${field("street",t("street"),{full:true,attr:'autocomplete="street-address"'})}
+      </div></fieldset>
+      <fieldset><legend>${t("payment")}</legend><div class="opts">${[MK.payments[0],"card",...MK.payments.slice(1)].map(m=>`<label class="opt choose" style="grid-template-columns:22px 1fr"><input type="radio" name="pay" value="${esc(m)}" ${f.pay===m?"checked":""}><span class="radio"></span><div class="t">${m==="card"?t("card"):esc(m)}</div></label>`).join("")}</div><p class="hint">${t("payNote")}</p></fieldset>
+      <button class="btn block" type="submit" id="placeOrder">${t("place")}</button>
+    </form>
+    <aside class="panel" id="cosum">${checkoutSummary()}</aside></div></div>`;
+}
+
+function editPanel(o){
+  const open = Date.now() < o.editDeadline;
+  if(!open) return `<div class="box" id="editOrder"><p style="margin:0">${t("editClosed")}</p><div class="row-btns"><a class="btn ghost sm" href="#returns">${t("returnLink")}</a></div></div>`;
+  return `<div class="box" id="editOrder"><div class="brand">${t("editH")(o.editUntil)}</div><p style="margin:6px 0 4px">${t("editP")}</p>
+    ${o.lines.map((l,i)=>{const p=bySlug(l.slug); const opts=p.sizes.filter(z=>z[1]||z[0]===l.size).map(z=>`<option value="${z[0]}" ${z[0]===l.size?"selected":""}>${z[0]}</option>`).join("");
+      return `<div class="edit-line">${photo(p,"sm")}<div><div style="font-weight:600">${esc(p.name)}</div><div style="color:var(--muted);font-size:12.5px">${l.qty} ×${lineTag(l)}</div></div><label><span class="sr">${t("changeSize")}</span><select data-editline="${i}" aria-label="${t("changeSize")}">${opts}</select></label></div>`;}).join("")}
+    <div class="row-btns"><button class="btn ghost sm" type="button" data-act="askcancel">${t("cancel")}</button><a class="btn ghost sm" href="#returns">${t("returnLink")}</a></div></div>`;
+}
+function viewConfirm(){
+  const o=S.order; if(!o){ location.hash="#products"; return ""; }
+  if(o.cancelled) return `<div class="wrap"><div class="confirm"><h1 class="page">${t("cancelledH")}</h1><p class="sub">${t("cancelledP")(o.no)}</p><a class="btn" href="#products">${t("backShop")}</a></div></div>`;
+  const when = o.method==="pickup" ? `${fmtDate(o.date)}, ${o.time}` : o.method==="same" ? `${fmtDate(o.date)}, ${o.window}` : fmtDate(o.date);
+  return `<div class="wrap"><div class="confirm">
+    <div class="tick">${ICON.check}</div>
+    <h1 class="page">${t("thanks")}, ${esc(o.fname)}</h1>
+    <p class="sub">${t("orderNo")}: <b style="color:var(--fg)">${o.no}</b>. ${t("confirmMail")(esc(o.email))}</p>
+    <div class="box">
+      <div class="brand">${o.method==="pickup"?t("yourPickup"):t("yourDate")}</div>
+      <p class="big">${when}</p>
+      <p style="margin:8px 0 0">${t(o.method)}. ${o.method==="pickup"?`${t("pickupAt")}: ${esc(o.store.name)}, ${esc(o.store.addr)}`:`${t("deliverTo2")}: ${esc(o.fname)} ${esc(o.lname)}, ${esc(o.street)}, ${esc(o.pc)} ${esc(o.city)}`}</p>
+    </div>
+    ${editPanel(o)}
+    <div class="box"><div class="brand" style="margin-bottom:6px">${t("items")}</div>
+      ${o.lines.map(l=>{const p=bySlug(l.slug);return `<div class="mini-line">${photo(p,"sm")}<div><div style="font-weight:600">${esc(p.name)}</div><div style="color:var(--muted);font-size:12.5px">${esc(l.size)} · ${l.qty} ×${lineTag(l)}</div></div><div style="font-weight:700">${money(p.price*l.qty)}</div></div>`;}).join("")}
+      <div class="tot"><div><span>${t("subtotal")}</span><span>${money(o.sub)}</span></div><div><span>${t(o.method)}</span><span>${o.ship?money(o.ship):t("free")}</span></div><div class="grand"><span>${t("total")}</span><span>${money(o.sub+o.ship)}</span></div></div>
+    </div>
+    <a class="btn" style="margin-top:24px" href="#products">${t("backShop")}</a>
+  </div></div>`;
+}
+
+/* ---- returns & exchanges ---- */
+function altSize(l){ const p=bySlug(l.slug); return (p.sizes.find(z=>z[1] && z[0]!==l.size)||p.sizes[0])[0]; }
+function demoOrder(){
+  const r=resolvePlace(S.loc?S.loc.pc:MK.demo.pc).loc;
+  return {no:BR.orderPrefix+"40817265", email:"demo@"+BR.domain, fname:MK.demo.fname, lname:MK.demo.lname, street:MK.demo.street, pc:r.pc, city:r.city,
+    lines:D.demo.orderLines.map(l=>({...l})), demo:true};
+}
+function qrSVG(seed){
+  let h=0; for(const ch of seed) h=(h*31+ch.charCodeAt(0))>>>0;
+  const rnd=()=>{h^=h<<13;h>>>=0;h^=h>>>17;h^=h<<5;h>>>=0;return h/4294967296;};
+  const N=25; let r="";
+  const finder=(x,y)=>`<rect x="${x}" y="${y}" width="7" height="7"/><rect x="${x+1}" y="${y+1}" width="5" height="5" fill="#fff"/><rect x="${x+2}" y="${y+2}" width="3" height="3"/>`;
+  for(let y=0;y<N;y++) for(let x=0;x<N;x++){
+    const inF=(x<8&&y<8)||(x>N-9&&y<8)||(x<8&&y>N-9); if(inF) continue;
+    if(rnd()>.52) r+=`<rect x="${x}" y="${y}" width="1" height="1"/>`;
+  }
+  return `<svg class="qr" viewBox="0 0 ${N} ${N}" shape-rendering="crispEdges" role="img" aria-label="QR">${r}${finder(0,0)}${finder(N-7,0)}${finder(0,N-7)}</svg>`;
+}
+function viewReturns(){
+  const R=S.ret;
+  const head=`<div id="retHead"><nav class="crumbs"><a href="#products">${t("home")}</a><span>/</span><span>${t("retTitle")}</span></nav>
+    <h1 class="page">${t("retTitle")}</h1><p class="sub">${t("retSub")(FEES.returnDays)}</p></div>`;
+  if(R.step==="find"){
+    const pre=S.order&&!S.order.cancelled?S.order:null;
+    return `<div class="wrap">${head}<form id="retFind" novalidate style="max-width:520px;margin-bottom:64px"><div class="fields">
+      <div class="f full"><label for="r-no">${t("orderNoL")}</label><input id="r-no" value="${esc(R.no||pre?.no||"")}"></div>
+      <div class="f full"><label for="r-email">${t("email")}</label><input id="r-email" type="email" value="${esc(R.email||pre?.email||"")}"></div></div>
+      ${R.err?`<div class="formerr" role="alert">${t("notFound")}</div>`:""}
+      <div class="row-btns"><button class="btn" type="submit">${t("findOrder")}</button><button class="btn ghost" type="button" data-act="demoorder">${t("demoOrder")}</button></div></form></div>`;
+  }
+  const o=R.order, rl=resolvePlace(o.pc).loc, stores=nearestStores(3,rl);
+  if(!R.store) R.store=stores[0].id;
+  if(R.step==="items"){
+    return `<div class="wrap">${head}<div class="two"><div>
+      <p style="margin:0 0 6px;font-weight:700">${t("orderNo")}: ${esc(o.no)}</p>
+      <div id="retItems">${o.lines.map((l,i)=>{const p=bySlug(l.slug), s=R.sel[i]||{a:"keep"};
+        const sizes=p.sizes.filter(z=>z[1] && z[0]!==l.size).map(z=>`<option value="${z[0]}" ${s.size===z[0]?"selected":""}>${z[0]}</option>`).join("");
+        return `<div class="ret-line">${photo(p,"sm")}<div><div style="font-weight:700">${esc(p.name)}</div><div style="color:var(--muted);font-size:13px">${t("sizeL")}: ${esc(l.size)} · ${money(p.price)}</div>
+          <div class="seg" role="radiogroup">${[["keep",t("keep")],["return",t("ret")],["exchange",t("exch")]].map(([v,lab])=>`<label><input type="radio" name="ret-${i}" value="${v}" ${s.a===v?"checked":""}><span>${lab}</span></label>`).join("")}</div>
+          ${s.a==="exchange"?`<div style="margin-top:10px;font-size:13px"><label>${t("newSize")}: <select data-retsize="${i}">${sizes}</select></label></div>`:""}
+        </div></div>`;}).join("")}</div>
+      <fieldset id="retMethod" style="margin-top:26px"><legend>${t("howReturn")}</legend><div class="opts">
+        <label class="opt choose" style="grid-template-columns:22px 22px 1fr"><input type="radio" name="retm" value="store" ${R.method==="store"?"checked":""}><span class="radio"></span>${ICON.store}<div><div class="t">${t("inStore")}</div><div class="d">${t("inStoreP")}</div></div></label>
+        <label class="opt choose" style="grid-template-columns:22px 22px 1fr"><input type="radio" name="retm" value="carrier" ${R.method==="carrier"?"checked":""}><span class="radio"></span>${ICON.truck}<div><div class="t">${t("carrier")(orList(MK.carriers))}</div><div class="d">${FEES.returnFee?t("carrierP")(money(FEES.returnFee),FEES.refundDays):t("carrierPfree")(FEES.refundDays)}</div></div></label></div>
+        ${R.method==="store"?`<h3 style="font-size:14px;margin:16px 0 8px">${t("pickStore")}</h3><div class="opts">${stores.map(s=>`<label class="opt choose" style="grid-template-columns:22px 1fr auto"><input type="radio" name="retstore" value="${s.id}" ${R.store===s.id?"checked":""}><span class="radio"></span><div><div class="t">${esc(s.name)}</div><div class="d">${esc(s.addr)}</div></div><div class="d">${t("km")(Math.round(s.dist))}</div></label>`).join("")}</div>`:""}
+      </fieldset>
+      ${R.errItems?`<div class="formerr" role="alert">${t("chooseItem")}</div>`:""}
+      <button class="btn block" type="button" data-act="submitreturn" id="submitReturn" style="margin:8px 0 64px">${t("submitRet")}</button>
+    </div><aside class="panel"><h2>${t("summary")}</h2>${o.lines.map(l=>{const p=bySlug(l.slug);return `<div class="mini-line">${photo(p,"sm")}<div><div style="font-weight:600">${esc(p.name)}</div><div style="color:var(--muted);font-size:12.5px">${esc(l.size)}</div></div><div style="font-weight:700">${money(p.price)}</div></div>`;}).join("")}</aside></div></div>`;
+  }
+  const res=R.result;
+  return `<div class="wrap">${head}<div class="box" id="retDone" style="border:1px solid var(--line);padding:22px;margin-bottom:64px;max-width:820px">
+    <div class="ret-done">${qrSVG(res.no)}<div>
+      <h2 style="font-stretch:75%;font-weight:800;font-size:26px;margin:0 0 4px">${t("retDoneH")}</h2>
+      <p style="margin:0 0 12px;color:var(--muted)">${t("retNo")}: <b style="color:var(--fg)">${res.no}</b>. ${res.method==="store"?t("showQRstore")(esc(res.store.name)):t("showQRcarrier")(orList(MK.carriers))}</p>
+      ${res.lines.map(x=>`<div class="mini-line" style="grid-template-columns:56px 1fr">${photo(bySlug(x.slug),"sm")}<div><div style="font-weight:600">${esc(bySlug(x.slug).name)}</div><div style="font-size:13px" class="${x.a==="exchange"?"ok":""}">${x.text}</div></div></div>`).join("")}
+      <div class="promise"><b>${res.refund}</b></div>
+      <div class="row-btns"><a class="btn" href="#products">${t("backShop")}</a></div>
+    </div></div></div></div>`;
+}
+function submitReturn(){
+  const R=S.ret, o=R.order, picks=o.lines.map((l,i)=>{const sel=R.sel[i]||{a:"keep"}; return {...l, a:sel.a, newSize:sel.size||altSize(l)};}).filter(x=>x.a!=="keep");
+  if(!picks.length){ R.errItems=true; render(); return; }
+  const rl=resolvePlace(o.pc).loc, store=nearestStores(3,rl).find(s=>s.id===R.store)||nearestStores(1,rl)[0];
+  let refund=0;
+  const lines=picks.map(x=>{
+    const p=bySlug(x.slug);
+    if(x.a==="return"){ refund+=p.price*x.qty; return {slug:x.slug,a:"return",text:t("outReturn")}; }
+    const newSize = x.newSize;
+    if(R.method==="store" && storeQty(store,p,newSize)>0) return {slug:x.slug,a:"exchange",text:t("outExchNow")(newSize,esc(short(store)))};
+    const ship=addBiz(dispatchDay(), (R.method==="store"?1:3)+STD_DAYS[rl.zone]);
+    return {slug:x.slug,a:"exchange",text:t("outExchShip")(newSize,fmtDate(ship))};
+  });
+  if(R.method==="carrier" && refund>0) refund=Math.max(0,refund-FEES.returnFee);
+  R.result={no:"R"+String(Math.floor(1000000+Math.random()*8999999)), method:R.method, store, lines,
+    refund: refund>0 ? (R.method==="store"?t("refundNow")(money(refund)):t("refund14")(money(refund),FEES.refundDays)) : t("noRefund")};
+  R.step="done"; R.errItems=false; render(); window.scrollTo(0,0);
+}
+
+/* ---- modal & toast ---- */
+function renderModal(){
+  const host=document.getElementById("modal"); const M=S.modal;
+  if(!M){ host.innerHTML=""; return; }
+  if(M.type==="tourmenu"){ host.innerHTML=tourMenuHTML(); return; }
+  let inner="";
+  if(M.type==="reserve"){
+    const st=STORES.find(s=>s.id===M.store), p=bySlug(M.slug);
+    if(M.done){
+      const r=pickupReady(true), hold=nextOpenDay(r.date);
+      const hh=STORE_HOURS(hold.getUTCDay()); inner=`<h2>${ic("check",20)} ${t("reserveDoneH")}</h2><p>${t("reserveDone")(esc(st.name),fmtDate(r.date),r.time,fmtDate(hold),hm(hh?hh[1]:20))}</p><button class="btn" data-act="closemodal">${t("close")}</button>`;
+    } else {
+      inner=`<h2>${t("reserveH")}</h2><p>${t("reserveP")(esc(st.name),esc(M.size))}</p>
+        <form id="reserveForm" novalidate><div class="f"><label for="rv-name">${t("reserveName")}</label><input id="rv-name" value="${esc(M.name||[S.form.fname,S.form.lname].filter(Boolean).join(" "))}" ${M.err?.name?'aria-invalid="true"':""}>${M.err?.name?`<div class="msg">${t("req")}</div>`:""}</div>
+        <div class="f"><label for="rv-contact">${t("reserveContact")}</label><input id="rv-contact" value="${esc(M.contact||S.form.email||"")}" ${M.err?.contact?'aria-invalid="true"':""}>${M.err?.contact?`<div class="msg">${t("req")}</div>`:""}</div>
+        <button class="btn block" type="submit">${t("reserveBtn")}</button></form>`;
+    }
+  } else if(M.type==="cancel"){
+    inner=`<h2>${t("cancelH")}</h2><p>${t("cancelP")}</p><div class="row-btns"><button class="btn" data-act="docancel">${t("cancelYes")}</button><button class="btn ghost" data-act="closemodal">${t("cancelNo")}</button></div>`;
+  }
+  host.innerHTML=`<div class="modal-bg" data-act="bgclose"><div class="modal" role="dialog" aria-modal="true"><button class="x" data-act="closemodal" aria-label="${t("close")}">×</button>${inner}</div></div>`;
+  host.querySelector("input,button.btn")?.focus();
+}
+let toastTimer;
+function toast(msg){ S.toast=msg; const el=document.getElementById("toast"); el.textContent=msg; el.hidden=false; clearTimeout(toastTimer); toastTimer=setTimeout(()=>{el.hidden=true;},2600); }
+
+/* ================= chrome ================= */
+function renderChrome(){
+  document.documentElement.lang=S.lang;
+  document.getElementById("usp").innerHTML=`<div class="wrap"><span>${ic("truck",15)} ${t("usp1")(money(FREE_OVER))}</span><span>${ic("store",15)} ${t("usp2")}</span><span>${ic("ret",15)} ${t("usp3")}</span></div>`;
+  const n=S.basket.reduce((a,l)=>a+l.qty,0), nav=t("nav");
+  document.getElementById("hdr").innerHTML=`<div class="wrap hdr">
+    <div class="left">${t("men")?`<a href="#products" class="on">${esc(t("men"))}</a>`:""}${t("junior")?`<a href="#products">${esc(t("junior"))}</a>`:""}</div>
+    <a class="logo" href="#products" aria-label="${esc(BR.name)}"><b>${BR.logoHTML}</b></a>
+    <div class="right">${D.langs.length>1?`<div class="lang" role="group" aria-label="Language">${D.langs.map(L=>`<button type="button" data-lang="${L}" aria-pressed="${S.lang===L}">${T[L].langLabel}</button>`).join("")}</div>`:""}
+      <button class="icon-btn" type="button" aria-label="Search">${ICON.search}</button>
+      <button class="icon-btn" type="button" aria-label="Account">${ICON.user}</button>
+      <a class="icon-btn" href="#basket" aria-label="${t("basket")} (${n})" id="bagLink">${ICON.bag}${n?`<span class="count">${n}</span>`:""}</a></div></div>
+    <nav class="cats"><div class="wrap">${nav.map((x,i)=>`<a href="#products" class="${i===nav.length-1?"sale":""}">${x}</a>`).join("")}</div></nav>`;
+  const F=t("footer"), cols=[t("f1"),t("f2"),t("f3"),t("f4")];
+  document.getElementById("ftr").innerHTML=`<div class="wrap"><div class="cols">${cols.map((c,i)=>`<div><h3>${String(F[i]).replace("{0}",esc(BR.name))}</h3>${c.map((x,j)=>`<p>${i===0&&j===2?`<a href="#returns">${x}</a>`:x}</p>`).join("")}</div>`).join("")}</div>
+    <div class="fine"><span>${esc(BR.name)} ${esc(MK.name.local)}, mock-up</span><span>${t("fine")}</span></div></div>`;
+  document.getElementById("tour-fab").innerHTML=`<i></i>${t("guide")}`;
+  document.getElementById("tour-fab").hidden=!!S.tour || (S.modal&&S.modal.type==="tourmenu");
+}
+
+/* ================= router ================= */
+function route(){
+  const h=(location.hash||"#products").slice(1);
+  if(h.startsWith("product-")){ const p=bySlug(h.slice(8)); return p?["pdp",p]:["plp"]; }
+  if(["basket","checkout","confirmation","returns"].includes(h)) return [h];
+  return ["plp"];
+}
+let lastRoute="";
+function render(){
+  renderChrome();
+  const [r,p]=route(), app=document.getElementById("app");
+  app.innerHTML = r==="pdp"?viewPDP(p): r==="basket"?viewBasket(): r==="checkout"?viewCheckout(): r==="confirmation"?viewConfirm(): r==="returns"?viewReturns(): viewPLP();
+  renderModal();
+  if(location.hash!==lastRoute){ window.scrollTo(0,0); lastRoute=location.hash; }
+  if(S.tour) drawTour();
+}
+window.addEventListener("hashchange",()=>{ S.sizeErr=false; S.notifyErr=false; S.errors={}; S.showPlpLoc=false; S.pendingFilter=null; if(location.hash!=="#returns" && S.ret.step==="done") S.ret={...S.ret,step:"find",result:null,sel:{}}; render(); });
+
+/* ================= events ================= */
+function setLocation(loc){ S.loc=loc; S.locErr={}; S.editLoc={}; S.locDraft={}; S.form.pc=loc.pc; S.form.city=loc.city||S.form.city; S.form.store=null; S.form.nomDate=null; }
+document.addEventListener("click",e=>{
+  const lb=e.target.closest("[data-lang]"); if(lb){ S.lang=lb.dataset.lang; render(); return; }
+  const a=e.target.closest("[data-act]"); if(!a) return;
+  const act=a.dataset.act;
+  if(act==="bgclose"){ if(e.target===a){ S.modal=null; renderModal(); renderChrome(); } return; }
+  if(act==="closemodal"){ S.modal=null; renderModal(); renderChrome(); return; }
+  if(act==="wish"){ S.wish[a.dataset.slug]=!S.wish[a.dataset.slug]; render(); }
+  if(act==="filter"){ const f=a.dataset.filter; if(!S.loc){ S.showPlpLoc=true; S.pendingFilter=f; render(); document.getElementById("loc-plp")?.focus(); return; } S.filters[f]=!S.filters[f]; render(); }
+  if(act==="clearfilters"){ S.filters={same:false,store:false}; render(); }
+  if(act==="size"){ S.sel[S.curSlug]=a.dataset.size; S.sizeErr=false; S.notifyErr=false; render(); }
+  if(act==="unnotify"){ delete S.notify[S.curSlug+"|"+S.sel[S.curSlug]]; render(); document.getElementById("notify-email")?.focus(); }
+  if(act==="add"){
+    const p=bySlug(S.curSlug), z=S.sel[p.slug];
+    if(!z){ S.sizeErr=true; render(); document.querySelector(".sizes button")?.focus(); return; }
+    if(sizeState(p,z)==="notify") return;
+    const ex=S.basket.find(l=>l.slug===p.slug&&l.size===z);
+    const max = sizeState(p,z)==="store" ? 1 : 5;
+    if(ex) ex.qty=Math.min(max,ex.qty+1); else S.basket.push({slug:p.slug,size:z,qty:1});
+    location.hash="#basket";
+  }
+  if(act==="inc"){ const l=S.basket[+a.dataset.i]; l.qty=Math.min(sizeState(bySlug(l.slug),l.size)==="store"?1:5,l.qty+1); render(); }
+  if(act==="dec"){ const i=+a.dataset.i; const l=S.basket[i]; l.qty--; if(l.qty<1) S.basket.splice(i,1); render(); }
+  if(act==="rm"){ S.basket.splice(+a.dataset.i,1); render(); }
+  if(act==="editloc"){ S.editLoc={...(S.editLoc||{}),[a.dataset.ctx]:true}; S.locDraft={...(S.locDraft||{}),[a.dataset.ctx]:S.loc?locLabel(S.loc):""}; render(); document.getElementById("loc-"+a.dataset.ctx)?.focus(); }
+  if(act==="plploc"){ S.showPlpLoc=!S.showPlpLoc; S.pendingFilter=null; if(S.loc) S.editLoc={...(S.editLoc||{}),plp:true}; render(); document.getElementById("loc-plp")?.focus(); }
+  if(act==="reserve"){ S.modal={type:"reserve", store:a.dataset.store, slug:S.curSlug, size:S.sel[S.curSlug]}; renderModal(); }
+  if(act==="askcancel"){ S.modal={type:"cancel"}; renderModal(); }
+  if(act==="docancel"){ S.order.cancelled=true; S.modal=null; render(); }
+  if(act==="demoorder"){ S.ret={...S.ret, step:"items", order:demoOrder(), sel:{0:{a:"exchange",size:"L"}}, method:"store", store:null, err:false}; render(); }
+  if(act==="submitreturn") submitReturn();
+});
+document.addEventListener("submit",e=>{
+  const lf=e.target.closest("[data-locform]");
+  if(lf){ e.preventDefault(); const ctx=lf.dataset.locform; const q=lf.querySelector("input").value;
+    const r=resolvePlace(q);
+    if(r.err){ S.locErr[ctx]=r.err; S.locDraft={...(S.locDraft||{}),[ctx]:q}; render(); document.getElementById("loc-"+ctx)?.focus(); return; }
+    setLocation(r.loc);
+    if(ctx==="plp"){ S.showPlpLoc=false; if(S.pendingFilter){ S.filters[S.pendingFilter]=true; S.pendingFilter=null; } }
+    render(); return; }
+  if(e.target.id==="co"){ e.preventDefault(); placeOrder(); }
+  if(e.target.matches("[data-notifyform]")){ e.preventDefault();
+    const v=e.target.querySelector("input").value.trim();
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){ S.notifyErr=true; render(); document.getElementById("notify-email")?.focus(); return; }
+    S.notifyErr=false; S.notify[S.curSlug+"|"+S.sel[S.curSlug]]=v; if(!S.form.email) S.form.email=v; render(); }
+  if(e.target.id==="reserveForm"){ e.preventDefault();
+    const M=S.modal; M.name=document.getElementById("rv-name").value.trim(); M.contact=document.getElementById("rv-contact").value.trim();
+    M.err={name:!M.name, contact:!M.contact}; if(M.err.name||M.err.contact){ renderModal(); return; }
+    M.done=true; S.reserved[`${M.slug}|${M.size}|${M.store}`]=true; render(); }
+  if(e.target.id==="retFind"){ e.preventDefault();
+    const no=document.getElementById("r-no").value.trim(), em=document.getElementById("r-email").value.trim().toLowerCase();
+    const cand=[S.order&&!S.order.cancelled?S.order:null, demoOrder()].filter(Boolean).find(o=>o.no.toLowerCase()===no.toLowerCase() && o.email.toLowerCase()===em);
+    S.ret.no=no; S.ret.email=em;
+    if(!cand){ S.ret.err=true; render(); return; }
+    S.ret={...S.ret, step:"items", order:cand, sel:{}, err:false, store:null}; render(); }
+});
+document.addEventListener("change",e=>{
+  const n=e.target.name;
+  if(e.target.id==="sort"){ S.sort=e.target.value; render(); }
+  if(n==="method"){ S.form.method=e.target.value; S.errors.method=null; refreshCheckoutParts(); }
+  if(n==="store"){ S.form.store=e.target.value; refreshCheckoutParts(); }
+  if(n==="nomDate"){ S.form.nomDate=e.target.value; refreshCheckoutParts(); }
+  if(n==="pay"){ S.form.pay=e.target.value; }
+  if(e.target.dataset.editline){ const l=S.order.lines[+e.target.dataset.editline]; l.size=e.target.value; toast(t("sizeChanged")(l.size)); render(); }
+  if(n && n.startsWith("ret-")){ const i=+n.slice(4); const p=bySlug(S.ret.order.lines[i].slug); S.ret.sel[i]={a:e.target.value, size:S.ret.sel[i]?.size || altSize(S.ret.order.lines[i])}; S.ret.errItems=false; render(); }
+  if(e.target.dataset.retsize){ S.ret.sel[+e.target.dataset.retsize].size=e.target.value; }
+  if(n==="retm"){ S.ret.method=e.target.value; render(); }
+  if(n==="retstore"){ S.ret.store=e.target.value; }
+});
+document.addEventListener("input",e=>{
+  const f=e.target.closest("#co"); if(!f || !e.target.name || e.target.type==="radio") return;
+  S.form[e.target.name]=e.target.value;
+  if(S.errors[e.target.name]){ delete S.errors[e.target.name]; e.target.removeAttribute("aria-invalid"); e.target.parentNode.querySelector(".msg")?.remove(); }
+  if(e.target.name==="pc"){
+    const v=e.target.value.trim();
+    if(isFullPc(v)){ const r=resolvePlace(v); if(r.loc){ setLocation(r.loc); const c=document.getElementById("f-city"); if(c && r.loc.city) c.value=r.loc.city; refreshCheckoutParts(); } }
+  }
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){ if(S.modal){ S.modal=null; renderModal(); renderChrome(); } else if(S.tour) endTour(); }
+});
+function refreshCheckoutParts(){
+  const spec={lines:S.basket};
+  if(S.loc && ["next","same"].includes(S.form.method) && !promiseFor(S.form.method,spec)) S.form.method="std";
+  const m=document.getElementById("methods"), s=document.getElementById("cosum");
+  if(m) m.innerHTML=checkoutMethods(); if(s) s.innerHTML=checkoutSummary();
+}
+function placeOrder(){
+  const f=S.form, E={}, req=t("req");
+  ["email","phone","fname","lname","pc"].forEach(k=>{ if(!String(f[k]||"").trim()) E[k]=req; });
+  if(f.method!=="pickup"){ ["street","city"].forEach(k=>{ if(!String(f[k]||"").trim()) E[k]=req; }); }
+  if(f.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email)) E.email=t("badEmail");
+  if(f.phone && !/^\+?[0-9][0-9 ]{6,17}$/.test(f.phone.trim())) E.phone=t("badPhone");
+  if(f.pc){ const r=resolvePlace(f.pc); if(!isFullPc(f.pc) || r.err) E.pc=t("badPc"); else S.loc=r.loc; }
+  const p = S.loc ? promiseFor(f.method,{lines:S.basket},f.store) : null;
+  if(S.loc && !p) E.method=t("unavailable");
+  S.errors=E;
+  if(Object.keys(E).length){ render(); const first=document.querySelector('[aria-invalid="true"]'); if(first){ first.focus(); first.scrollIntoView({block:"center"}); } return; }
+  const c=dkClock();
+  S.order={no:BR.orderPrefix+String(Math.floor(10000000+Math.random()*89999999)), email:f.email, fname:f.fname, lname:f.lname, street:f.street, pc:f.pc, city:f.city,
+    method:f.method, date:p.date, time:p.time||null, window:p.window||null, store:p.store||null,
+    lines:S.basket.map(l=>({...l})), sub:subtotal(), ship:methodPrice(f.method),
+    editDeadline:Date.now()+30*60000, editUntil:hhmm(c.h*60+c.m+30)};
+  S.basket=[]; S.errors={};
+  location.hash="#confirmation";
+}
+
+/* ================= guided demo (OneStock CXI paths) ================= */
+const SEEN_KEY="cxi-demo-seen-"+BR.slug;
+function tourSetLoc(q){ const r=resolvePlace(q); if(r.loc) setLocation(r.loc); }
+function tourBasket(lines){ S.basket=lines.map(l=>({...l})); }
+function tourOrder(){
+  if(!S.loc) tourSetLoc(D.demo.pc);
+  if(S.order && !S.order.cancelled && Date.now()<S.order.editDeadline) return;
+  const lines=D.demo.orderLines.map(l=>({...l}));
+  const p=promiseFor("std",{lines}), c=dkClock();
+  S.order={no:BR.orderPrefix+String(Math.floor(10000000+Math.random()*89999999)), email:"demo@"+BR.domain, fname:MK.demo.fname, lname:MK.demo.lname, street:MK.demo.street, pc:S.loc.pc, city:S.loc.city,
+    method:"std", date:p.date, time:null, window:null, store:null, lines, sub:lines.reduce((a,l)=>a+bySlug(l.slug).price*l.qty,0), ship:0,
+    editDeadline:Date.now()+30*60000, editUntil:hhmm(c.h*60+c.m+30)};
+}
+/* steps carry declarative actions; build_mockup.py resolves the demo values */
+function runActions(acts){
+  for(const a of acts||[]){
+    if(a.loc) tourSetLoc(a.loc);
+    if(a.locIfNone && !S.loc) tourSetLoc(a.locIfNone);
+    if(a.filters) S.filters={same:false,store:false,...a.filters};
+    if(a.sel) S.sel[a.sel[0]]=a.sel[1];
+    if(a.unsel) delete S.sel[a.unsel];
+    if(a.basket) tourBasket(a.basket);
+    if(a.method){ S.form.method=a.method; S.form.store=null; S.form.nomDate=null; }
+    if(a.order) tourOrder();
+    if(a.ret){ tourOrder(); S.ret={...S.ret, step:"items", order:S.order, sel:{0:{a:a.ret, size:altSize(S.order.lines[0])}}, method:"store", store:null, err:false, errItems:false}; }
+  }
+}
+const TOURS = D.tours.map(tr=>({...tr, steps:tr.steps.map(st=>({...st, setup:()=>runActions(st.actions)}))}));
+function tourMenuHTML(){
+  return `<div class="modal-bg" data-act="bgclose"><div class="os-menu" role="dialog" aria-modal="true" aria-labelledby="osm-h">
+    <button class="x modal-x" data-act="closemodal" aria-label="Close" style="position:absolute;top:10px;right:10px;background:none;border:0;font-size:22px;cursor:pointer;color:#fff">×</button>
+    <h2 id="osm-h">Guided demo: ${esc(D.cxi.retailer)} CXI</h2>
+    <p class="lead">Each path walks through one gap from the ${esc(D.cxi.date)} Customer Experience Index audit of ${esc(D.cxi.site)}, and shows how it could work.</p>
+    <div class="os-score"><b>${esc(D.cxi.score)}</b><span>overall CXI score today<br>Benchmark across comparable omnichannel retailers: ${esc(D.cxi.benchmark)}</span></div>
+    <div class="os-paths">${TOURS.map((tr,i)=>`<button type="button" data-tour="${i}"><b>${i+1}. ${tr.title}</b><small>${tr.steps.length} steps</small><em>${tr.score}</em></button>`).join("")}</div>
+    <div class="os-foot"><span>Mock-up prepared by OneStock for demonstration only.</span><button type="button" data-act="closemodal">Explore on my own</button></div>
+  </div></div>`;
+}
+function openTourMenu(){ S.modal={type:"tourmenu"}; renderModal(); renderChrome(); document.querySelector(".os-paths button")?.focus(); }
+function startTour(i){ try{localStorage.setItem(SEEN_KEY,"1");}catch(e){} S.modal=null; renderModal(); goStep(i,0); }
+function goStep(ti,si){
+  const st=TOURS[ti].steps[si]; S.tour={ti,si}; S.modal=null;
+  if(st.setup) st.setup();
+  S.sizeErr=false; S.notifyErr=false; S.errors={};
+  if(location.hash!==st.route) location.hash=st.route; else render();
+  setTimeout(()=>{ drawTour(); focusTarget(); }, 140);
+}
+function endTour(){ S.tour=null; document.getElementById("tour-ring").hidden=true; document.getElementById("tour-pop").hidden=true; renderChrome(); }
+function tourTarget(){ if(!S.tour) return null; const st=TOURS[S.tour.ti].steps[S.tour.si]; return document.querySelector(st.target); }
+function focusTarget(){
+  const el=tourTarget(); if(!el) return;
+  const r=el.getBoundingClientRect(), narrow=innerWidth<=700;
+  const top = narrow ? r.top+scrollY-120 : r.top+scrollY-Math.max(100,(innerHeight-r.height)/2);
+  window.scrollTo({top:Math.max(0,top), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+  document.querySelector("#tour-pop .tb.primary")?.focus({preventScroll:true});
+}
+function drawTour(){
+  const pop=document.getElementById("tour-pop");
+  if(!S.tour){ pop.hidden=true; return; }
+  const tr=TOURS[S.tour.ti], st=tr.steps[S.tour.si], last=S.tour.si===tr.steps.length-1, nextTour=TOURS[S.tour.ti+1];
+  pop.hidden=false;
+  pop.innerHTML=`<div class="tp-head"><span><b>${tr.title}</b> &nbsp;${S.tour.si+1} / ${tr.steps.length}</span><button class="tp-x" data-tact="end" aria-label="Exit guide">×</button></div>
+    <div class="tp-body"><h3>${st.title}</h3>
+      <div class="tp-today"><b>TODAY ON ${esc(D.cxi.siteShort.toUpperCase())}</b><p>${st.today}</p></div>
+      <div class="tp-now"><b>IN THIS MOCK-UP</b><p>${st.now}</p></div>
+      ${st.tryit?`<p class="tp-try">${st.tryit}</p>`:""}</div>
+    <div class="tp-nav"><div class="dots">${tr.steps.map((_,i)=>`<i class="${i===S.tour.si?"on":""}"></i>`).join("")}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">${S.tour.si>0?`<button class="tb" data-tact="back">Back</button>`:`<button class="tb" data-tact="menu">All paths</button>`}
+      ${last?(nextTour?`<button class="tb" data-tact="menu">All paths</button><button class="tb primary" data-tact="nexttour">Next path</button>`:`<button class="tb primary" data-tact="menu">All paths</button>`):`<button class="tb primary" data-tact="next">Next</button>`}</div></div>`;
+  document.getElementById("tour-fab").hidden=true;
+}
+function positionTour(){
+  if(S.tour){
+    const ring=document.getElementById("tour-ring"), pop=document.getElementById("tour-pop"), el=tourTarget();
+    const vw=innerWidth, vh=innerHeight, pw=pop.offsetWidth, ph=pop.offsetHeight;
+    if(el){
+      const r=el.getBoundingClientRect(), pad=6;
+      ring.hidden=false; Object.assign(ring.style,{top:(r.top-pad)+"px",left:(r.left-pad)+"px",width:(r.width+pad*2)+"px",height:(r.height+pad*2)+"px"});
+      if(vw>700){
+        let left,top; const cl=(v,a,b)=>Math.min(Math.max(v,a),b);
+        const side=Math.max(vw-r.right-30, r.left-30);
+        const want = (side>=250 && side<380) ? Math.floor(side) : 380;
+        if(pop.offsetWidth!==want) pop.style.width=want+"px";
+        const pw2=pop.offsetWidth, ph2=pop.offsetHeight;
+        if(r.right+18+pw2<=vw-12){ left=r.right+18; top=cl(r.top,12,vh-ph2-12); }
+        else if(r.left-18-pw2>=12){ left=r.left-18-pw2; top=cl(r.top,12,vh-ph2-12); }
+        else if(r.bottom+18+ph2<=vh-12){ top=r.bottom+18; left=cl(r.left,12,vw-pw2-12); }
+        else { top=cl(r.top-18-ph2,12,vh-ph2-12); left=cl(r.left,12,vw-pw2-12); }
+        pop.style.left=left+"px"; pop.style.top=top+"px";
+      }
+    } else {
+      ring.hidden=true;
+      if(vw>700){ pop.style.left=((vw-pw)/2)+"px"; pop.style.top=((vh-ph)/2)+"px"; }
+    }
+  }
+  requestAnimationFrame(positionTour);
+}
+document.addEventListener("click",e=>{
+  const tb=e.target.closest("[data-tour]"); if(tb){ startTour(+tb.dataset.tour); return; }
+  const ta=e.target.closest("[data-tact]"); if(ta){
+    const a=ta.dataset.tact, T0=S.tour;
+    if(a==="end") endTour();
+    if(a==="next") goStep(T0.ti,T0.si+1);
+    if(a==="back") goStep(T0.ti,T0.si-1);
+    if(a==="nexttour") goStep(T0.ti+1,0);
+    if(a==="menu"){ endTour(); openTourMenu(); }
+    return;
+  }
+  if(e.target.closest("#tour-fab")){ openTourMenu(); }
+});
+
+/* ================= boot ================= */
+render();
+requestAnimationFrame(positionTour);
+let seen=false; try{ seen=localStorage.getItem(SEEN_KEY)==="1"; }catch(e){}
+if(!seen && !location.hash){ openTourMenu(); try{localStorage.setItem(SEEN_KEY,"1");}catch(e){} }
+
+
+</script>
+</body>
+</html>
